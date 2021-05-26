@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="591ef02179834cde91e1d08a5b861c2e" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="ProjekatModelDB.SERVIS" Width="1.5" PointX="1" PointY="0.5" />
+        <EntityTypeShape EntityType="ProjekatModelDB.RADNIK" Width="1.5" PointX="2.125" PointY="4" />
+        <EntityTypeShape EntityType="ProjekatModelDB.SERVISNI_ALAT" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="ProjekatModelDB.MUSTERIJA" Width="1.5" PointX="7.625" PointY="0.5" />
+        <EntityTypeShape EntityType="ProjekatModelDB.MOBILNI_TELEFON" Width="1.5" PointX="10.25" PointY="2.375" />
+        <EntityTypeShape EntityType="ProjekatModelDB.SLUZBENIK" Width="1.5" PointX="0.75" PointY="7.625" />
+        <InheritanceConnector EntityType="ProjekatModelDB.SLUZBENIK" />
+        <EntityTypeShape EntityType="ProjekatModelDB.SERVISER" Width="1.5" PointX="3.625" PointY="7.625" />
+        <InheritanceConnector EntityType="ProjekatModelDB.SERVISER" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="ProjekatModelDB.OSTECENJE" Width="1.5" PointX="10.25" PointY="5.625" />
+        <EntityTypeShape EntityType="ProjekatModelDB.FORMA" Width="1.5" PointX="0.75" PointY="10.125" />
+        <EntityTypeShape EntityType="ProjekatModelDB.TELEFONSKI_DEO" Width="1.75" PointX="10.25" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjekatModelDB.PROIZVODJAC" Width="1.5" PointX="11.75" PointY="11.25" />
+        <AssociationConnector Association="ProjekatModelDB.SERVISRADNIK" />
+        <AssociationConnector Association="ProjekatModelDB.SERVISSERVISNI_ALAT" />
+        <AssociationConnector Association="ProjekatModelDB.SLUZBENIKFORMA" />
+        <AssociationConnector Association="ProjekatModelDB.SERVISERSERVISNI_ALAT" />
+        <AssociationConnector Association="ProjekatModelDB.MUSTERIJAMOBILNI_TELEFON" />
+        <AssociationConnector Association="ProjekatModelDB.MUSTERIJAFORMA" />
+        <AssociationConnector Association="ProjekatModelDB.MOBILNI_TELEFONOSTECENJE" />
+        <EntityTypeShape EntityType="ProjekatModelDB.PROIZVODNJA" Width="1.5" PointX="9" PointY="11.25" />
+        <AssociationConnector Association="ProjekatModelDB.TELEFONSKI_DEOPROIZVODNJA" />
+        <AssociationConnector Association="ProjekatModelDB.PROIZVODNJAPROIZVODJAC" />
+        <EntityTypeShape EntityType="ProjekatModelDB.POPRAVKA" Width="2.125" PointX="6.25" PointY="7.25" />
+        <AssociationConnector Association="ProjekatModelDB.OSTECENJEPOPRAVKA" />
+        <AssociationConnector Association="ProjekatModelDB.SERVISERPOPRAVKA" />
+        <EntityTypeShape EntityType="ProjekatModelDB.NABAVKA" Width="1.5" PointX="6.375" PointY="11.25" />
+        <AssociationConnector Association="ProjekatModelDB.SLUZBENIKNABAVKA" />
+        <AssociationConnector Association="ProjekatModelDB.TELEFONSKI_DEONABAVKA" />
+        <AssociationConnector Association="ProjekatModelDB.NABAVKAPOPRAVKA" />
+        <AssociationConnector Association="ProjekatModelDB.RADNIKRADNIK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

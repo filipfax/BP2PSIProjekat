@@ -1,0 +1,65 @@
+﻿<Window x:Class="UserInterface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface"
+        mc:Ignorable="d"
+        Title="BP2 Projekat" Height="450" Width="800">
+    <Grid>
+        <TabControl x:Name="EntityTab" SelectionChanged="EntityTab_SelectionChanged">
+            <TabItem Header="Prikaz Entiteta"  >
+                <TabControl>
+                    <TabItem Header="Servis" x:Name="ServisTab" >
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                <Button x:Name="AddServisBtn" Click="AddServisBtn_Click"  Height="30" Width="140" Margin="0 5 5 5" >Add Servis</Button>
+                                <Button x:Name="UpdateServisBtn" Click="UpdateServisBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteServisBtn" Click="DeleteServisBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                            </StackPanel>
+
+                            <DataGrid HorizontalAlignment="Left" x:Name="ServisDG" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionChanged="ServisDG_SelectionChanged" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding SERV_ID}" Header="ID Servisa"/>
+                                    <DataGridTextColumn Binding="{Binding WEB_STR}" Header="Web stranica"/>
+                                    <DataGridTextColumn Binding="{Binding BR_ZAP}" Header="Broj zaposlenih"/>
+                                    <DataGridTextColumn Binding="{Binding TELBROJ}" Header="Telefonski broj"/>
+                                    <DataGridTextColumn Binding="{Binding ADRESA}" Header="Adresa"/>
+                                    <DataGridTextColumn Binding="{Binding RAD_VRM}" Header="Radno vreme"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Radnik" x:Name="RadnikTab">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                <Button x:Name="AddRadnikBtn"   Click="AddRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Radnik</Button>
+                                <Button x:Name="UpdateRadnikBtn" Click="UpdateRadnikBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteRadnikBtn"  Click="DeleteRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                            </StackPanel>
+
+                            <DataGrid HorizontalAlignment="Left" x:Name="RadnikDG" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" SelectionChanged="RadnikDG_SelectionChanged" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding MBR}" Header="MBR"/>
+                                    <DataGridTextColumn Binding="{Binding IME}" Header="Ime"/>
+                                    <DataGridTextColumn Binding="{Binding PRZ}" Header="Prezime"/>
+                                    <DataGridTextColumn Binding="{Binding PLT}" Header="Plata"/>
+                                    <DataGridTextColumn Binding="{Binding SERVISSERV_ID}" Header="Servis"/>
+                                    <DataGridTextColumn Binding="{Binding RADNIKMBR}" Header="ID Nadredjenog"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Servisni Alat" x:Name="ServisniAlatTab">
+                        
+                    </TabItem>
+                </TabControl>
+
+            </TabItem>
+            
+            <TabItem Header="Skripte" />
+            <TabItem Header="Log" />
+        </TabControl>
+
+    </Grid>
+</Window>

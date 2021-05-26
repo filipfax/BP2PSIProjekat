@@ -1,0 +1,1024 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjekatModelDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ProjekatModelDBStoreContainer">
+    <EntitySet Name="SERVIS1" EntityType="ProjekatModelDB.Store.SERVIS1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RADNICI" EntityType="ProjekatModelDB.Store.RADNICI" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SERVISNI_ALATI" EntityType="ProjekatModelDB.Store.SERVISNI_ALATI" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MUSTERIJE" EntityType="ProjekatModelDB.Store.MUSTERIJE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MOBILNI_TELEFONI" EntityType="ProjekatModelDB.Store.MOBILNI_TELEFONI" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OSTECENJA" EntityType="ProjekatModelDB.Store.OSTECENJA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FORME" EntityType="ProjekatModelDB.Store.FORME" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TELEFONSKI_DELOVI" EntityType="ProjekatModelDB.Store.TELEFONSKI_DELOVI" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PROIZVODJACI" EntityType="ProjekatModelDB.Store.PROIZVODJACI" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PROIZVODNJAs" EntityType="ProjekatModelDB.Store.PROIZVODNJAs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="POPRAVKAs" EntityType="ProjekatModelDB.Store.POPRAVKAs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NABAVKAs" EntityType="ProjekatModelDB.Store.NABAVKAs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RADNICI_SLUZBENIK" EntityType="ProjekatModelDB.Store.RADNICI_SLUZBENIK" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RADNICI_SERVISER" EntityType="ProjekatModelDB.Store.RADNICI_SERVISER" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SERVISRADNIK" Association="ProjekatModelDB.Store.SERVISRADNIK">
+      <End Role="SERVIS" EntitySet="SERVIS1" />
+      <End Role="RADNIK" EntitySet="RADNICI" />
+    </AssociationSet>
+    <AssociationSet Name="SERVISSERVISNI_ALAT" Association="ProjekatModelDB.Store.SERVISSERVISNI_ALAT">
+      <End Role="SERVIS" EntitySet="SERVIS1" />
+      <End Role="SERVISNI_ALAT" EntitySet="SERVISNI_ALATI" />
+    </AssociationSet>
+    <AssociationSet Name="SLUZBENIKFORMA" Association="ProjekatModelDB.Store.SLUZBENIKFORMA">
+      <End Role="SLUZBENIK" EntitySet="RADNICI_SLUZBENIK" />
+      <End Role="FORMA" EntitySet="FORME" />
+    </AssociationSet>
+    <AssociationSet Name="SERVISERSERVISNI_ALAT" Association="ProjekatModelDB.Store.SERVISERSERVISNI_ALAT">
+      <End Role="SERVISER" EntitySet="RADNICI_SERVISER" />
+      <End Role="SERVISNI_ALAT" EntitySet="SERVISNI_ALATI" />
+    </AssociationSet>
+    <AssociationSet Name="MUSTERIJAMOBILNI_TELEFON" Association="ProjekatModelDB.Store.MUSTERIJAMOBILNI_TELEFON">
+      <End Role="MUSTERIJA" EntitySet="MUSTERIJE" />
+      <End Role="MOBILNI_TELEFON" EntitySet="MOBILNI_TELEFONI" />
+    </AssociationSet>
+    <AssociationSet Name="MUSTERIJAFORMA" Association="ProjekatModelDB.Store.MUSTERIJAFORMA">
+      <End Role="MUSTERIJA" EntitySet="MUSTERIJE" />
+      <End Role="FORMA" EntitySet="FORME" />
+    </AssociationSet>
+    <AssociationSet Name="MOBILNI_TELEFONOSTECENJE" Association="ProjekatModelDB.Store.MOBILNI_TELEFONOSTECENJE">
+      <End Role="MOBILNI_TELEFON" EntitySet="MOBILNI_TELEFONI" />
+      <End Role="OSTECENJE" EntitySet="OSTECENJA" />
+    </AssociationSet>
+    <AssociationSet Name="TELEFONSKI_DEOPROIZVODNJA" Association="ProjekatModelDB.Store.TELEFONSKI_DEOPROIZVODNJA">
+      <End Role="TELEFONSKI_DEO" EntitySet="TELEFONSKI_DELOVI" />
+      <End Role="PROIZVODNJA" EntitySet="PROIZVODNJAs" />
+    </AssociationSet>
+    <AssociationSet Name="PROIZVODNJAPROIZVODJAC" Association="ProjekatModelDB.Store.PROIZVODNJAPROIZVODJAC">
+      <End Role="PROIZVODNJA" EntitySet="PROIZVODNJAs" />
+      <End Role="PROIZVODJAC" EntitySet="PROIZVODJACI" />
+    </AssociationSet>
+    <AssociationSet Name="OSTECENJEPOPRAVKA" Association="ProjekatModelDB.Store.OSTECENJEPOPRAVKA">
+      <End Role="OSTECENJE" EntitySet="OSTECENJA" />
+      <End Role="POPRAVKA" EntitySet="POPRAVKAs" />
+    </AssociationSet>
+    <AssociationSet Name="SERVISERPOPRAVKA" Association="ProjekatModelDB.Store.SERVISERPOPRAVKA">
+      <End Role="SERVISER" EntitySet="RADNICI_SERVISER" />
+      <End Role="POPRAVKA" EntitySet="POPRAVKAs" />
+    </AssociationSet>
+    <AssociationSet Name="SLUZBENIKNABAVKA" Association="ProjekatModelDB.Store.SLUZBENIKNABAVKA">
+      <End Role="SLUZBENIK" EntitySet="RADNICI_SLUZBENIK" />
+      <End Role="NABAVKA" EntitySet="NABAVKAs" />
+    </AssociationSet>
+    <AssociationSet Name="TELEFONSKI_DEONABAVKA" Association="ProjekatModelDB.Store.TELEFONSKI_DEONABAVKA">
+      <End Role="TELEFONSKI_DEO" EntitySet="TELEFONSKI_DELOVI" />
+      <End Role="NABAVKA" EntitySet="NABAVKAs" />
+    </AssociationSet>
+    <AssociationSet Name="NABAVKAPOPRAVKA" Association="ProjekatModelDB.Store.NABAVKAPOPRAVKA">
+      <End Role="NABAVKA" EntitySet="NABAVKAs" />
+      <End Role="POPRAVKA" EntitySet="POPRAVKAs" />
+    </AssociationSet>
+    <AssociationSet Name="RADNIKRADNIK" Association="ProjekatModelDB.Store.RADNIKRADNIK">
+      <End Role="RADNIK" EntitySet="RADNICI" />
+      <End Role="RADNIK1" EntitySet="RADNICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLUZBENIK_inherits_RADNIK" Association="ProjekatModelDB.Store.FK_SLUZBENIK_inherits_RADNIK">
+      <End Role="RADNIK" EntitySet="RADNICI" />
+      <End Role="SLUZBENIK" EntitySet="RADNICI_SLUZBENIK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVISER_inherits_RADNIK" Association="ProjekatModelDB.Store.FK_SERVISER_inherits_RADNIK">
+      <End Role="RADNIK" EntitySet="RADNICI" />
+      <End Role="SERVISER" EntitySet="RADNICI_SERVISER" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="SERVIS1">
+    <Key>
+      <PropertyRef Name="SERV_ID" />
+    </Key>
+    <Property Name="SERV_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WEB_STR" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BR_ZAP" Type="int" Nullable="false" />
+    <Property Name="TELBROJ" Type="int" Nullable="false" />
+    <Property Name="ADRESA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RAD_VRM" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RADNICI">
+    <Key>
+      <PropertyRef Name="MBR" />
+    </Key>
+    <Property Name="MBR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PLT" Type="int" Nullable="false" />
+    <Property Name="IME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PRZ" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SERVISSERV_ID" Type="int" Nullable="true" />
+    <Property Name="RADNIKMBR" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SERVISNI_ALATI">
+    <Key>
+      <PropertyRef Name="ALAT_ID" />
+    </Key>
+    <Property Name="ALAT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAZ" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TIP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SERVISSERV_ID" Type="int" Nullable="false" />
+    <Property Name="KLC" Type="int" Nullable="false" />
+    <Property Name="SERVISERMBR" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MUSTERIJE">
+    <Key>
+      <PropertyRef Name="MUS_ID" />
+    </Key>
+    <Property Name="MUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PRZ" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BR_TEL" Type="int" Nullable="false" />
+    <Property Name="EMAIL" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MOBILNI_TELEFONI">
+    <Key>
+      <PropertyRef Name="MOB_ID" />
+    </Key>
+    <Property Name="MOB_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MODEL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PROIZV" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OP_SIS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MUSTERIJAMUS_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OSTECENJA">
+    <Key>
+      <PropertyRef Name="OST_ID" />
+      <PropertyRef Name="MOBILNI_TELEFONMOB_ID" />
+    </Key>
+    <Property Name="OST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OPIS_OST" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TIP_OST" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MOBILNI_TELEFONMOB_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FORME">
+    <Key>
+      <PropertyRef Name="FORM_ID" />
+    </Key>
+    <Property Name="FORM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DAT_ISP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OPIS_OST" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DOD_MOLBA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SLUZBENIKMBR" Type="int" Nullable="false" />
+    <Property Name="MUSTERIJAMUS_ID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TELEFONSKI_DELOVI">
+    <Key>
+      <PropertyRef Name="ID_DEO" />
+    </Key>
+    <Property Name="ID_DEO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ORIG" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROIZVODJACI">
+    <Key>
+      <PropertyRef Name="ID_PROIZV" />
+    </Key>
+    <Property Name="ID_PROIZV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAZ" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TELBROJ" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROIZVODNJAs">
+    <Key>
+      <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+      <PropertyRef Name="PROIZVODJACID_PROIZV" />
+    </Key>
+    <Property Name="TELEFONSKI_DEOID_DEO" Type="int" Nullable="false" />
+    <Property Name="PROIZVODJACID_PROIZV" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POPRAVKAs">
+    <Key>
+      <PropertyRef Name="OSTECENJEOST_ID" />
+      <PropertyRef Name="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+      <PropertyRef Name="SERVISERMBR" />
+    </Key>
+    <Property Name="CENA" Type="int" Nullable="false" />
+    <Property Name="OSTECENJEOST_ID" Type="int" Nullable="false" />
+    <Property Name="OSTECENJEMOBILNI_TELEFONMOB_ID" Type="int" Nullable="false" />
+    <Property Name="SERVISERMBR" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NABAVKAs">
+    <Key>
+      <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+      <PropertyRef Name="SLUZBENIKMBR" />
+    </Key>
+    <Property Name="CENA" Type="int" Nullable="false" />
+    <Property Name="SLUZBENIKMBR" Type="int" Nullable="false" />
+    <Property Name="TELEFONSKI_DEOID_DEO" Type="int" Nullable="false" />
+    <Property Name="POPRAVKAOSTECENJEOST_ID" Type="int" Nullable="true" />
+    <Property Name="POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID" Type="int" Nullable="true" />
+    <Property Name="POPRAVKASERVISERMBR" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RADNICI_SLUZBENIK">
+    <Key>
+      <PropertyRef Name="MBR" />
+    </Key>
+    <Property Name="MBR" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RADNICI_SERVISER">
+    <Key>
+      <PropertyRef Name="MBR" />
+    </Key>
+    <Property Name="MBR" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SERVISRADNIK">
+    <End Role="SERVIS" Type="ProjekatModelDB.Store.SERVIS1" Multiplicity="0..1" />
+    <End Role="RADNIK" Type="ProjekatModelDB.Store.RADNICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVIS">
+        <PropertyRef Name="SERV_ID" />
+      </Principal>
+      <Dependent Role="RADNIK">
+        <PropertyRef Name="SERVISSERV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SERVISSERVISNI_ALAT">
+    <End Role="SERVIS" Type="ProjekatModelDB.Store.SERVIS1" Multiplicity="1" />
+    <End Role="SERVISNI_ALAT" Type="ProjekatModelDB.Store.SERVISNI_ALATI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVIS">
+        <PropertyRef Name="SERV_ID" />
+      </Principal>
+      <Dependent Role="SERVISNI_ALAT">
+        <PropertyRef Name="SERVISSERV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SLUZBENIKFORMA">
+    <End Role="SLUZBENIK" Type="ProjekatModelDB.Store.RADNICI_SLUZBENIK" Multiplicity="1" />
+    <End Role="FORMA" Type="ProjekatModelDB.Store.FORME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLUZBENIK">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="FORMA">
+        <PropertyRef Name="SLUZBENIKMBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SERVISERSERVISNI_ALAT">
+    <End Role="SERVISER" Type="ProjekatModelDB.Store.RADNICI_SERVISER" Multiplicity="0..1" />
+    <End Role="SERVISNI_ALAT" Type="ProjekatModelDB.Store.SERVISNI_ALATI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVISER">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="SERVISNI_ALAT">
+        <PropertyRef Name="SERVISERMBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MUSTERIJAMOBILNI_TELEFON">
+    <End Role="MUSTERIJA" Type="ProjekatModelDB.Store.MUSTERIJE" Multiplicity="1" />
+    <End Role="MOBILNI_TELEFON" Type="ProjekatModelDB.Store.MOBILNI_TELEFONI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MUSTERIJA">
+        <PropertyRef Name="MUS_ID" />
+      </Principal>
+      <Dependent Role="MOBILNI_TELEFON">
+        <PropertyRef Name="MUSTERIJAMUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MUSTERIJAFORMA">
+    <End Role="MUSTERIJA" Type="ProjekatModelDB.Store.MUSTERIJE" Multiplicity="0..1" />
+    <End Role="FORMA" Type="ProjekatModelDB.Store.FORME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MUSTERIJA">
+        <PropertyRef Name="MUS_ID" />
+      </Principal>
+      <Dependent Role="FORMA">
+        <PropertyRef Name="MUSTERIJAMUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MOBILNI_TELEFONOSTECENJE">
+    <End Role="MOBILNI_TELEFON" Type="ProjekatModelDB.Store.MOBILNI_TELEFONI" Multiplicity="1" />
+    <End Role="OSTECENJE" Type="ProjekatModelDB.Store.OSTECENJA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOBILNI_TELEFON">
+        <PropertyRef Name="MOB_ID" />
+      </Principal>
+      <Dependent Role="OSTECENJE">
+        <PropertyRef Name="MOBILNI_TELEFONMOB_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TELEFONSKI_DEOPROIZVODNJA">
+    <End Role="TELEFONSKI_DEO" Type="ProjekatModelDB.Store.TELEFONSKI_DELOVI" Multiplicity="1" />
+    <End Role="PROIZVODNJA" Type="ProjekatModelDB.Store.PROIZVODNJAs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TELEFONSKI_DEO">
+        <PropertyRef Name="ID_DEO" />
+      </Principal>
+      <Dependent Role="PROIZVODNJA">
+        <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PROIZVODNJAPROIZVODJAC">
+    <End Role="PROIZVODNJA" Type="ProjekatModelDB.Store.PROIZVODNJAs" Multiplicity="*" />
+    <End Role="PROIZVODJAC" Type="ProjekatModelDB.Store.PROIZVODJACI" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PROIZVODJAC">
+        <PropertyRef Name="ID_PROIZV" />
+      </Principal>
+      <Dependent Role="PROIZVODNJA">
+        <PropertyRef Name="PROIZVODJACID_PROIZV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OSTECENJEPOPRAVKA">
+    <End Role="OSTECENJE" Type="ProjekatModelDB.Store.OSTECENJA" Multiplicity="1" />
+    <End Role="POPRAVKA" Type="ProjekatModelDB.Store.POPRAVKAs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OSTECENJE">
+        <PropertyRef Name="OST_ID" />
+        <PropertyRef Name="MOBILNI_TELEFONMOB_ID" />
+      </Principal>
+      <Dependent Role="POPRAVKA">
+        <PropertyRef Name="OSTECENJEOST_ID" />
+        <PropertyRef Name="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SERVISERPOPRAVKA">
+    <End Role="SERVISER" Type="ProjekatModelDB.Store.RADNICI_SERVISER" Multiplicity="1" />
+    <End Role="POPRAVKA" Type="ProjekatModelDB.Store.POPRAVKAs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVISER">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="POPRAVKA">
+        <PropertyRef Name="SERVISERMBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SLUZBENIKNABAVKA">
+    <End Role="SLUZBENIK" Type="ProjekatModelDB.Store.RADNICI_SLUZBENIK" Multiplicity="1" />
+    <End Role="NABAVKA" Type="ProjekatModelDB.Store.NABAVKAs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLUZBENIK">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="NABAVKA">
+        <PropertyRef Name="SLUZBENIKMBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TELEFONSKI_DEONABAVKA">
+    <End Role="TELEFONSKI_DEO" Type="ProjekatModelDB.Store.TELEFONSKI_DELOVI" Multiplicity="1" />
+    <End Role="NABAVKA" Type="ProjekatModelDB.Store.NABAVKAs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TELEFONSKI_DEO">
+        <PropertyRef Name="ID_DEO" />
+      </Principal>
+      <Dependent Role="NABAVKA">
+        <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NABAVKAPOPRAVKA">
+    <End Role="NABAVKA" Type="ProjekatModelDB.Store.NABAVKAs" Multiplicity="*" />
+    <End Role="POPRAVKA" Type="ProjekatModelDB.Store.POPRAVKAs" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="POPRAVKA">
+        <PropertyRef Name="OSTECENJEOST_ID" />
+        <PropertyRef Name="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+        <PropertyRef Name="SERVISERMBR" />
+      </Principal>
+      <Dependent Role="NABAVKA">
+        <PropertyRef Name="POPRAVKAOSTECENJEOST_ID" />
+        <PropertyRef Name="POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID" />
+        <PropertyRef Name="POPRAVKASERVISERMBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RADNIKRADNIK">
+    <End Role="RADNIK" Type="ProjekatModelDB.Store.RADNICI" Multiplicity="0..1" />
+    <End Role="RADNIK1" Type="ProjekatModelDB.Store.RADNICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RADNIK">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="RADNIK1">
+        <PropertyRef Name="RADNIKMBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLUZBENIK_inherits_RADNIK">
+    <End Role="RADNIK" Type="ProjekatModelDB.Store.RADNICI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SLUZBENIK" Type="ProjekatModelDB.Store.RADNICI_SLUZBENIK" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="RADNIK">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="SLUZBENIK">
+        <PropertyRef Name="MBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVISER_inherits_RADNIK">
+    <End Role="RADNIK" Type="ProjekatModelDB.Store.RADNICI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SERVISER" Type="ProjekatModelDB.Store.RADNICI_SERVISER" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="RADNIK">
+        <PropertyRef Name="MBR" />
+      </Principal>
+      <Dependent Role="SERVISER">
+        <PropertyRef Name="MBR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ProjekatModelDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ProjekatModelDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SERVIS1" EntityType="ProjekatModelDB.SERVIS" />
+          <EntitySet Name="RADNICI" EntityType="ProjekatModelDB.RADNIK" />
+          <EntitySet Name="SERVISNI_ALATI" EntityType="ProjekatModelDB.SERVISNI_ALAT" />
+          <EntitySet Name="MUSTERIJE" EntityType="ProjekatModelDB.MUSTERIJA" />
+          <EntitySet Name="MOBILNI_TELEFONI" EntityType="ProjekatModelDB.MOBILNI_TELEFON" />
+          <EntitySet Name="OSTECENJA" EntityType="ProjekatModelDB.OSTECENJE" />
+          <EntitySet Name="FORME" EntityType="ProjekatModelDB.FORMA" />
+          <EntitySet Name="TELEFONSKI_DELOVI" EntityType="ProjekatModelDB.TELEFONSKI_DEO" />
+          <EntitySet Name="PROIZVODJACI" EntityType="ProjekatModelDB.PROIZVODJAC" />
+          <AssociationSet Name="SERVISRADNIK" Association="ProjekatModelDB.SERVISRADNIK">
+            <End Role="SERVIS" EntitySet="SERVIS1" />
+            <End Role="RADNIK" EntitySet="RADNICI" />
+          </AssociationSet>
+          <AssociationSet Name="SERVISSERVISNI_ALAT" Association="ProjekatModelDB.SERVISSERVISNI_ALAT">
+            <End Role="SERVIS" EntitySet="SERVIS1" />
+            <End Role="SERVISNI_ALAT" EntitySet="SERVISNI_ALATI" />
+          </AssociationSet>
+          <AssociationSet Name="SLUZBENIKFORMA" Association="ProjekatModelDB.SLUZBENIKFORMA">
+            <End Role="SLUZBENIK" EntitySet="RADNICI" />
+            <End Role="FORMA" EntitySet="FORME" />
+          </AssociationSet>
+          <AssociationSet Name="SERVISERSERVISNI_ALAT" Association="ProjekatModelDB.SERVISERSERVISNI_ALAT">
+            <End Role="SERVISER" EntitySet="RADNICI" />
+            <End Role="SERVISNI_ALAT" EntitySet="SERVISNI_ALATI" />
+          </AssociationSet>
+          <AssociationSet Name="MUSTERIJAMOBILNI_TELEFON" Association="ProjekatModelDB.MUSTERIJAMOBILNI_TELEFON">
+            <End Role="MUSTERIJA" EntitySet="MUSTERIJE" />
+            <End Role="MOBILNI_TELEFON" EntitySet="MOBILNI_TELEFONI" />
+          </AssociationSet>
+          <AssociationSet Name="MUSTERIJAFORMA" Association="ProjekatModelDB.MUSTERIJAFORMA">
+            <End Role="MUSTERIJA" EntitySet="MUSTERIJE" />
+            <End Role="FORMA" EntitySet="FORME" />
+          </AssociationSet>
+          <AssociationSet Name="MOBILNI_TELEFONOSTECENJE" Association="ProjekatModelDB.MOBILNI_TELEFONOSTECENJE">
+            <End Role="MOBILNI_TELEFON" EntitySet="MOBILNI_TELEFONI" />
+            <End Role="OSTECENJE" EntitySet="OSTECENJA" />
+          </AssociationSet>
+          <EntitySet Name="PROIZVODNJAs" EntityType="ProjekatModelDB.PROIZVODNJA" />
+          <AssociationSet Name="TELEFONSKI_DEOPROIZVODNJA" Association="ProjekatModelDB.TELEFONSKI_DEOPROIZVODNJA">
+            <End Role="TELEFONSKI_DEO" EntitySet="TELEFONSKI_DELOVI" />
+            <End Role="PROIZVODNJA" EntitySet="PROIZVODNJAs" />
+          </AssociationSet>
+          <AssociationSet Name="PROIZVODNJAPROIZVODJAC" Association="ProjekatModelDB.PROIZVODNJAPROIZVODJAC">
+            <End Role="PROIZVODNJA" EntitySet="PROIZVODNJAs" />
+            <End Role="PROIZVODJAC" EntitySet="PROIZVODJACI" />
+          </AssociationSet>
+          <EntitySet Name="POPRAVKAs" EntityType="ProjekatModelDB.POPRAVKA" />
+          <AssociationSet Name="OSTECENJEPOPRAVKA" Association="ProjekatModelDB.OSTECENJEPOPRAVKA">
+            <End Role="OSTECENJE" EntitySet="OSTECENJA" />
+            <End Role="POPRAVKA" EntitySet="POPRAVKAs" />
+          </AssociationSet>
+          <AssociationSet Name="SERVISERPOPRAVKA" Association="ProjekatModelDB.SERVISERPOPRAVKA">
+            <End Role="SERVISER" EntitySet="RADNICI" />
+            <End Role="POPRAVKA" EntitySet="POPRAVKAs" />
+          </AssociationSet>
+          <EntitySet Name="NABAVKAs" EntityType="ProjekatModelDB.NABAVKA" />
+          <AssociationSet Name="SLUZBENIKNABAVKA" Association="ProjekatModelDB.SLUZBENIKNABAVKA">
+            <End Role="SLUZBENIK" EntitySet="RADNICI" />
+            <End Role="NABAVKA" EntitySet="NABAVKAs" />
+          </AssociationSet>
+          <AssociationSet Name="TELEFONSKI_DEONABAVKA" Association="ProjekatModelDB.TELEFONSKI_DEONABAVKA">
+            <End Role="TELEFONSKI_DEO" EntitySet="TELEFONSKI_DELOVI" />
+            <End Role="NABAVKA" EntitySet="NABAVKAs" />
+          </AssociationSet>
+          <AssociationSet Name="NABAVKAPOPRAVKA" Association="ProjekatModelDB.NABAVKAPOPRAVKA">
+            <End Role="NABAVKA" EntitySet="NABAVKAs" />
+            <End Role="POPRAVKA" EntitySet="POPRAVKAs" />
+          </AssociationSet>
+          <AssociationSet Name="RADNIKRADNIK" Association="ProjekatModelDB.RADNIKRADNIK">
+            <End Role="RADNIK" EntitySet="RADNICI" />
+            <End Role="RADNIK1" EntitySet="RADNICI" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="SERVIS">
+          <Key>
+            <PropertyRef Name="SERV_ID" />
+          </Key>
+          <Property Name="SERV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WEB_STR" Type="String" Nullable="false" />
+          <Property Name="BR_ZAP" Type="Int32" Nullable="false" />
+          <Property Name="TELBROJ" Type="Int32" Nullable="false" />
+          <Property Name="ADRESA" Type="String" Nullable="false" />
+          <Property Name="RAD_VRM" Type="String" Nullable="false" />
+          <NavigationProperty Name="RADNIKs" Relationship="ProjekatModelDB.SERVISRADNIK" FromRole="SERVIS" ToRole="RADNIK" />
+          <NavigationProperty Name="SERVISNI_ALAT" Relationship="ProjekatModelDB.SERVISSERVISNI_ALAT" FromRole="SERVIS" ToRole="SERVISNI_ALAT" />
+        </EntityType>
+        <EntityType Name="RADNIK">
+          <Key>
+            <PropertyRef Name="MBR" />
+          </Key>
+          <Property Name="MBR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLT" Type="Int32" Nullable="false" />
+          <Property Name="IME" Type="String" Nullable="false" />
+          <Property Name="PRZ" Type="String" Nullable="false" />
+          <NavigationProperty Name="SERVIS" Relationship="ProjekatModelDB.SERVISRADNIK" FromRole="RADNIK" ToRole="SERVIS" />
+          <Property Name="SERVISSERV_ID" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="PODREDJENI" Relationship="ProjekatModelDB.RADNIKRADNIK" FromRole="RADNIK" ToRole="RADNIK1" />
+          <NavigationProperty Name="NADREDJEN" Relationship="ProjekatModelDB.RADNIKRADNIK" FromRole="RADNIK1" ToRole="RADNIK" />
+          <Property Name="RADNIKMBR" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="SERVISNI_ALAT">
+          <Key>
+            <PropertyRef Name="ALAT_ID" />
+          </Key>
+          <Property Name="ALAT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAZ" Type="String" Nullable="false" />
+          <Property Name="TIP" Type="String" Nullable="false" />
+          <NavigationProperty Name="SERVIS" Relationship="ProjekatModelDB.SERVISSERVISNI_ALAT" FromRole="SERVISNI_ALAT" ToRole="SERVIS" />
+          <Property Name="SERVISSERV_ID" Type="Int32" Nullable="false" />
+          <Property Name="KLC" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SERVISER" Relationship="ProjekatModelDB.SERVISERSERVISNI_ALAT" FromRole="SERVISNI_ALAT" ToRole="SERVISER" />
+          <Property Name="SERVISERMBR" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MUSTERIJA">
+          <Key>
+            <PropertyRef Name="MUS_ID" />
+          </Key>
+          <Property Name="MUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IME" Type="String" Nullable="false" />
+          <Property Name="PRZ" Type="String" Nullable="false" />
+          <Property Name="BR_TEL" Type="Int32" Nullable="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" />
+          <NavigationProperty Name="MOBILNI_TELEFONI" Relationship="ProjekatModelDB.MUSTERIJAMOBILNI_TELEFON" FromRole="MUSTERIJA" ToRole="MOBILNI_TELEFON" />
+          <NavigationProperty Name="FORMAs" Relationship="ProjekatModelDB.MUSTERIJAFORMA" FromRole="MUSTERIJA" ToRole="FORMA" />
+        </EntityType>
+        <EntityType Name="MOBILNI_TELEFON">
+          <Key>
+            <PropertyRef Name="MOB_ID" />
+          </Key>
+          <Property Name="MOB_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODEL" Type="String" Nullable="false" />
+          <Property Name="PROIZV" Type="String" Nullable="false" />
+          <Property Name="OP_SIS" Type="String" Nullable="false" />
+          <NavigationProperty Name="MUSTERIJA" Relationship="ProjekatModelDB.MUSTERIJAMOBILNI_TELEFON" FromRole="MOBILNI_TELEFON" ToRole="MUSTERIJA" />
+          <Property Name="MUSTERIJAMUS_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OSTECENJEs" Relationship="ProjekatModelDB.MOBILNI_TELEFONOSTECENJE" FromRole="MOBILNI_TELEFON" ToRole="OSTECENJE" />
+        </EntityType>
+        <EntityType Name="SLUZBENIK" BaseType="ProjekatModelDB.RADNIK" >
+          <NavigationProperty Name="FORMAs" Relationship="ProjekatModelDB.SLUZBENIKFORMA" FromRole="SLUZBENIK" ToRole="FORMA" />
+          <NavigationProperty Name="NABAVKAs" Relationship="ProjekatModelDB.SLUZBENIKNABAVKA" FromRole="SLUZBENIK" ToRole="NABAVKA" />
+        </EntityType>
+        <EntityType Name="SERVISER" BaseType="ProjekatModelDB.RADNIK" >
+          <NavigationProperty Name="SERVISNI_ALATI" Relationship="ProjekatModelDB.SERVISERSERVISNI_ALAT" FromRole="SERVISER" ToRole="SERVISNI_ALAT" />
+          <NavigationProperty Name="POPRAVKAs" Relationship="ProjekatModelDB.SERVISERPOPRAVKA" FromRole="SERVISER" ToRole="POPRAVKA" />
+        </EntityType>
+        <EntityType Name="OSTECENJE">
+          <Key>
+            <PropertyRef Name="OST_ID" />
+            <PropertyRef Name="MOBILNI_TELEFONMOB_ID" />
+          </Key>
+          <Property Name="OST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OPIS_OST" Type="String" Nullable="false" />
+          <Property Name="TIP_OST" Type="String" Nullable="false" />
+          <NavigationProperty Name="MOBILNI_TELEFON" Relationship="ProjekatModelDB.MOBILNI_TELEFONOSTECENJE" FromRole="OSTECENJE" ToRole="MOBILNI_TELEFON" />
+          <Property Name="MOBILNI_TELEFONMOB_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="POPRAVKAs" Relationship="ProjekatModelDB.OSTECENJEPOPRAVKA" FromRole="OSTECENJE" ToRole="POPRAVKA" />
+        </EntityType>
+        <EntityType Name="FORMA">
+          <Key>
+            <PropertyRef Name="FORM_ID" />
+          </Key>
+          <Property Name="FORM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DAT_ISP" Type="String" Nullable="false" />
+          <Property Name="OPIS_OST" Type="String" Nullable="false" />
+          <Property Name="DOD_MOLBA" Type="String" Nullable="false" />
+          <NavigationProperty Name="SLUZBENIK" Relationship="ProjekatModelDB.SLUZBENIKFORMA" FromRole="FORMA" ToRole="SLUZBENIK" />
+          <Property Name="SLUZBENIKMBR" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MUSTERIJA" Relationship="ProjekatModelDB.MUSTERIJAFORMA" FromRole="FORMA" ToRole="MUSTERIJA" />
+          <Property Name="MUSTERIJAMUS_ID" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="TELEFONSKI_DEO">
+          <Key>
+            <PropertyRef Name="ID_DEO" />
+          </Key>
+          <Property Name="ID_DEO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIP" Type="String" Nullable="false" />
+          <Property Name="ORIG" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PROIZVODNJAs" Relationship="ProjekatModelDB.TELEFONSKI_DEOPROIZVODNJA" FromRole="TELEFONSKI_DEO" ToRole="PROIZVODNJA" />
+          <NavigationProperty Name="NABAVKAs" Relationship="ProjekatModelDB.TELEFONSKI_DEONABAVKA" FromRole="TELEFONSKI_DEO" ToRole="NABAVKA" />
+        </EntityType>
+        <EntityType Name="PROIZVODJAC">
+          <Key>
+            <PropertyRef Name="ID_PROIZV" />
+          </Key>
+          <Property Name="ID_PROIZV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAZ" Type="String" Nullable="false" />
+          <Property Name="TELBROJ" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PROIZVODNJAs" Relationship="ProjekatModelDB.PROIZVODNJAPROIZVODJAC" FromRole="PROIZVODJAC" ToRole="PROIZVODNJA" />
+        </EntityType>
+        <Association Name="SERVISRADNIK">
+          <End Type="ProjekatModelDB.SERVIS" Role="SERVIS" Multiplicity="0..1" />
+          <End Type="ProjekatModelDB.RADNIK" Role="RADNIK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIS">
+              <PropertyRef Name="SERV_ID" />
+            </Principal>
+            <Dependent Role="RADNIK">
+              <PropertyRef Name="SERVISSERV_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVISSERVISNI_ALAT">
+          <End Type="ProjekatModelDB.SERVIS" Role="SERVIS" Multiplicity="1" />
+          <End Type="ProjekatModelDB.SERVISNI_ALAT" Role="SERVISNI_ALAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIS">
+              <PropertyRef Name="SERV_ID" />
+            </Principal>
+            <Dependent Role="SERVISNI_ALAT">
+              <PropertyRef Name="SERVISSERV_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SLUZBENIKFORMA">
+          <End Type="ProjekatModelDB.SLUZBENIK" Role="SLUZBENIK" Multiplicity="1" />
+          <End Type="ProjekatModelDB.FORMA" Role="FORMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLUZBENIK">
+              <PropertyRef Name="MBR" />
+            </Principal>
+            <Dependent Role="FORMA">
+              <PropertyRef Name="SLUZBENIKMBR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVISERSERVISNI_ALAT">
+          <End Type="ProjekatModelDB.SERVISER" Role="SERVISER" Multiplicity="0..1" />
+          <End Type="ProjekatModelDB.SERVISNI_ALAT" Role="SERVISNI_ALAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVISER">
+              <PropertyRef Name="MBR" />
+            </Principal>
+            <Dependent Role="SERVISNI_ALAT">
+              <PropertyRef Name="SERVISERMBR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MUSTERIJAMOBILNI_TELEFON">
+          <End Type="ProjekatModelDB.MUSTERIJA" Role="MUSTERIJA" Multiplicity="1" />
+          <End Type="ProjekatModelDB.MOBILNI_TELEFON" Role="MOBILNI_TELEFON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUSTERIJA">
+              <PropertyRef Name="MUS_ID" />
+            </Principal>
+            <Dependent Role="MOBILNI_TELEFON">
+              <PropertyRef Name="MUSTERIJAMUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MUSTERIJAFORMA">
+          <End Type="ProjekatModelDB.MUSTERIJA" Role="MUSTERIJA" Multiplicity="0..1" />
+          <End Type="ProjekatModelDB.FORMA" Role="FORMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUSTERIJA">
+              <PropertyRef Name="MUS_ID" />
+            </Principal>
+            <Dependent Role="FORMA">
+              <PropertyRef Name="MUSTERIJAMUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MOBILNI_TELEFONOSTECENJE">
+          <End Type="ProjekatModelDB.MOBILNI_TELEFON" Role="MOBILNI_TELEFON" Multiplicity="1" />
+          <End Type="ProjekatModelDB.OSTECENJE" Role="OSTECENJE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOBILNI_TELEFON">
+              <PropertyRef Name="MOB_ID" />
+            </Principal>
+            <Dependent Role="OSTECENJE">
+              <PropertyRef Name="MOBILNI_TELEFONMOB_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PROIZVODNJA" >
+          <Key>
+            <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+            <PropertyRef Name="PROIZVODJACID_PROIZV" />
+          </Key>
+          <NavigationProperty Name="TELEFONSKI_DEO" Relationship="ProjekatModelDB.TELEFONSKI_DEOPROIZVODNJA" FromRole="PROIZVODNJA" ToRole="TELEFONSKI_DEO" />
+          <Property Name="TELEFONSKI_DEOID_DEO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PROIZVODJAC" Relationship="ProjekatModelDB.PROIZVODNJAPROIZVODJAC" FromRole="PROIZVODNJA" ToRole="PROIZVODJAC" />
+          <Property Name="PROIZVODJACID_PROIZV" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TELEFONSKI_DEOPROIZVODNJA">
+          <End Type="ProjekatModelDB.TELEFONSKI_DEO" Role="TELEFONSKI_DEO" Multiplicity="1" />
+          <End Type="ProjekatModelDB.PROIZVODNJA" Role="PROIZVODNJA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TELEFONSKI_DEO">
+              <PropertyRef Name="ID_DEO" />
+            </Principal>
+            <Dependent Role="PROIZVODNJA">
+              <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PROIZVODNJAPROIZVODJAC">
+          <End Type="ProjekatModelDB.PROIZVODNJA" Role="PROIZVODNJA" Multiplicity="*" />
+          <End Type="ProjekatModelDB.PROIZVODJAC" Role="PROIZVODJAC" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="PROIZVODJAC">
+              <PropertyRef Name="ID_PROIZV" />
+            </Principal>
+            <Dependent Role="PROIZVODNJA">
+              <PropertyRef Name="PROIZVODJACID_PROIZV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="POPRAVKA" >
+          <Key>
+            <PropertyRef Name="OSTECENJEOST_ID" />
+            <PropertyRef Name="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+            <PropertyRef Name="SERVISERMBR" />
+          </Key>
+          <Property Name="CENA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OSTECENJE" Relationship="ProjekatModelDB.OSTECENJEPOPRAVKA" FromRole="POPRAVKA" ToRole="OSTECENJE" />
+          <Property Name="OSTECENJEOST_ID" Type="Int32" Nullable="false" />
+          <Property Name="OSTECENJEMOBILNI_TELEFONMOB_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SERVISER" Relationship="ProjekatModelDB.SERVISERPOPRAVKA" FromRole="POPRAVKA" ToRole="SERVISER" />
+          <Property Name="SERVISERMBR" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NABAVKAs" Relationship="ProjekatModelDB.NABAVKAPOPRAVKA" FromRole="POPRAVKA" ToRole="NABAVKA" />
+        </EntityType>
+        <Association Name="OSTECENJEPOPRAVKA">
+          <End Type="ProjekatModelDB.OSTECENJE" Role="OSTECENJE" Multiplicity="1" />
+          <End Type="ProjekatModelDB.POPRAVKA" Role="POPRAVKA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OSTECENJE">
+              <PropertyRef Name="OST_ID" />
+              <PropertyRef Name="MOBILNI_TELEFONMOB_ID" />
+            </Principal>
+            <Dependent Role="POPRAVKA">
+              <PropertyRef Name="OSTECENJEOST_ID" />
+              <PropertyRef Name="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVISERPOPRAVKA">
+          <End Type="ProjekatModelDB.SERVISER" Role="SERVISER" Multiplicity="1" />
+          <End Type="ProjekatModelDB.POPRAVKA" Role="POPRAVKA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVISER">
+              <PropertyRef Name="MBR" />
+            </Principal>
+            <Dependent Role="POPRAVKA">
+              <PropertyRef Name="SERVISERMBR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NABAVKA" >
+          <Key>
+            <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+            <PropertyRef Name="SLUZBENIKMBR" />
+          </Key>
+          <Property Name="CENA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SLUZBENIK" Relationship="ProjekatModelDB.SLUZBENIKNABAVKA" FromRole="NABAVKA" ToRole="SLUZBENIK" />
+          <Property Name="SLUZBENIKMBR" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TELEFONSKI_DEO" Relationship="ProjekatModelDB.TELEFONSKI_DEONABAVKA" FromRole="NABAVKA" ToRole="TELEFONSKI_DEO" />
+          <Property Name="TELEFONSKI_DEOID_DEO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="POPRAVKA" Relationship="ProjekatModelDB.NABAVKAPOPRAVKA" FromRole="NABAVKA" ToRole="POPRAVKA" />
+          <Property Name="POPRAVKAOSTECENJEOST_ID" Type="Int32" Nullable="true" />
+          <Property Name="POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID" Type="Int32" Nullable="true" />
+          <Property Name="POPRAVKASERVISERMBR" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="SLUZBENIKNABAVKA">
+          <End Type="ProjekatModelDB.SLUZBENIK" Role="SLUZBENIK" Multiplicity="1" />
+          <End Type="ProjekatModelDB.NABAVKA" Role="NABAVKA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLUZBENIK">
+              <PropertyRef Name="MBR" />
+            </Principal>
+            <Dependent Role="NABAVKA">
+              <PropertyRef Name="SLUZBENIKMBR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TELEFONSKI_DEONABAVKA">
+          <End Type="ProjekatModelDB.TELEFONSKI_DEO" Role="TELEFONSKI_DEO" Multiplicity="1" />
+          <End Type="ProjekatModelDB.NABAVKA" Role="NABAVKA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TELEFONSKI_DEO">
+              <PropertyRef Name="ID_DEO" />
+            </Principal>
+            <Dependent Role="NABAVKA">
+              <PropertyRef Name="TELEFONSKI_DEOID_DEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NABAVKAPOPRAVKA">
+          <End Type="ProjekatModelDB.NABAVKA" Role="NABAVKA" Multiplicity="*" />
+          <End Type="ProjekatModelDB.POPRAVKA" Role="POPRAVKA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="POPRAVKA">
+              <PropertyRef Name="OSTECENJEOST_ID" />
+              <PropertyRef Name="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+              <PropertyRef Name="SERVISERMBR" />
+            </Principal>
+            <Dependent Role="NABAVKA">
+              <PropertyRef Name="POPRAVKAOSTECENJEOST_ID" />
+              <PropertyRef Name="POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID" />
+              <PropertyRef Name="POPRAVKASERVISERMBR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RADNIKRADNIK">
+          <End Type="ProjekatModelDB.RADNIK" Role="RADNIK" Multiplicity="0..1" />
+          <End Type="ProjekatModelDB.RADNIK" Role="RADNIK1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RADNIK">
+              <PropertyRef Name="MBR" />
+            </Principal>
+            <Dependent Role="RADNIK1">
+              <PropertyRef Name="RADNIKMBR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjekatModelDBStoreContainer" CdmEntityContainer="ProjekatModelDBContext">
+    <EntitySetMapping Name="SERVIS1">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.SERVIS)">
+        <MappingFragment StoreEntitySet="SERVIS1">
+          <ScalarProperty Name="SERV_ID" ColumnName="SERV_ID" />
+          <ScalarProperty Name="WEB_STR" ColumnName="WEB_STR" />
+          <ScalarProperty Name="BR_ZAP" ColumnName="BR_ZAP" />
+          <ScalarProperty Name="TELBROJ" ColumnName="TELBROJ" />
+          <ScalarProperty Name="ADRESA" ColumnName="ADRESA" />
+          <ScalarProperty Name="RAD_VRM" ColumnName="RAD_VRM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RADNICI">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.RADNIK)">
+        <MappingFragment StoreEntitySet="RADNICI">
+          <ScalarProperty Name="MBR" ColumnName="MBR" />
+          <ScalarProperty Name="PLT" ColumnName="PLT" />
+          <ScalarProperty Name="IME" ColumnName="IME" />
+          <ScalarProperty Name="PRZ" ColumnName="PRZ" />
+          <ScalarProperty Name="SERVISSERV_ID" ColumnName="SERVISSERV_ID" />
+          <ScalarProperty Name="RADNIKMBR" ColumnName="RADNIKMBR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.SLUZBENIK)">
+        <MappingFragment StoreEntitySet="RADNICI_SLUZBENIK">
+          <ScalarProperty Name="MBR" ColumnName="MBR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.SERVISER)">
+        <MappingFragment StoreEntitySet="RADNICI_SERVISER">
+          <ScalarProperty Name="MBR" ColumnName="MBR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVISNI_ALATI">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.SERVISNI_ALAT)">
+        <MappingFragment StoreEntitySet="SERVISNI_ALATI">
+          <ScalarProperty Name="ALAT_ID" ColumnName="ALAT_ID" />
+          <ScalarProperty Name="NAZ" ColumnName="NAZ" />
+          <ScalarProperty Name="TIP" ColumnName="TIP" />
+          <ScalarProperty Name="SERVISSERV_ID" ColumnName="SERVISSERV_ID" />
+          <ScalarProperty Name="KLC" ColumnName="KLC" />
+          <ScalarProperty Name="SERVISERMBR" ColumnName="SERVISERMBR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MUSTERIJE">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.MUSTERIJA)">
+        <MappingFragment StoreEntitySet="MUSTERIJE">
+          <ScalarProperty Name="MUS_ID" ColumnName="MUS_ID" />
+          <ScalarProperty Name="IME" ColumnName="IME" />
+          <ScalarProperty Name="PRZ" ColumnName="PRZ" />
+          <ScalarProperty Name="BR_TEL" ColumnName="BR_TEL" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOBILNI_TELEFONI">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.MOBILNI_TELEFON)">
+        <MappingFragment StoreEntitySet="MOBILNI_TELEFONI">
+          <ScalarProperty Name="MOB_ID" ColumnName="MOB_ID" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="PROIZV" ColumnName="PROIZV" />
+          <ScalarProperty Name="OP_SIS" ColumnName="OP_SIS" />
+          <ScalarProperty Name="MUSTERIJAMUS_ID" ColumnName="MUSTERIJAMUS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OSTECENJA">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.OSTECENJE)">
+        <MappingFragment StoreEntitySet="OSTECENJA">
+          <ScalarProperty Name="OST_ID" ColumnName="OST_ID" />
+          <ScalarProperty Name="MOBILNI_TELEFONMOB_ID" ColumnName="MOBILNI_TELEFONMOB_ID" />
+          <ScalarProperty Name="OPIS_OST" ColumnName="OPIS_OST" />
+          <ScalarProperty Name="TIP_OST" ColumnName="TIP_OST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORME">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.FORMA)">
+        <MappingFragment StoreEntitySet="FORME">
+          <ScalarProperty Name="FORM_ID" ColumnName="FORM_ID" />
+          <ScalarProperty Name="DAT_ISP" ColumnName="DAT_ISP" />
+          <ScalarProperty Name="OPIS_OST" ColumnName="OPIS_OST" />
+          <ScalarProperty Name="DOD_MOLBA" ColumnName="DOD_MOLBA" />
+          <ScalarProperty Name="SLUZBENIKMBR" ColumnName="SLUZBENIKMBR" />
+          <ScalarProperty Name="MUSTERIJAMUS_ID" ColumnName="MUSTERIJAMUS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TELEFONSKI_DELOVI">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.TELEFONSKI_DEO)">
+        <MappingFragment StoreEntitySet="TELEFONSKI_DELOVI">
+          <ScalarProperty Name="ID_DEO" ColumnName="ID_DEO" />
+          <ScalarProperty Name="TIP" ColumnName="TIP" />
+          <ScalarProperty Name="ORIG" ColumnName="ORIG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROIZVODJACI">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.PROIZVODJAC)">
+        <MappingFragment StoreEntitySet="PROIZVODJACI">
+          <ScalarProperty Name="ID_PROIZV" ColumnName="ID_PROIZV" />
+          <ScalarProperty Name="NAZ" ColumnName="NAZ" />
+          <ScalarProperty Name="TELBROJ" ColumnName="TELBROJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROIZVODNJAs">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.PROIZVODNJA)">
+        <MappingFragment StoreEntitySet="PROIZVODNJAs">
+          <ScalarProperty Name="TELEFONSKI_DEOID_DEO" ColumnName="TELEFONSKI_DEOID_DEO" />
+          <ScalarProperty Name="PROIZVODJACID_PROIZV" ColumnName="PROIZVODJACID_PROIZV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POPRAVKAs">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.POPRAVKA)">
+        <MappingFragment StoreEntitySet="POPRAVKAs">
+          <ScalarProperty Name="OSTECENJEOST_ID" ColumnName="OSTECENJEOST_ID" />
+          <ScalarProperty Name="OSTECENJEMOBILNI_TELEFONMOB_ID" ColumnName="OSTECENJEMOBILNI_TELEFONMOB_ID" />
+          <ScalarProperty Name="SERVISERMBR" ColumnName="SERVISERMBR" />
+          <ScalarProperty Name="CENA" ColumnName="CENA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NABAVKAs">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjekatModelDB.NABAVKA)">
+        <MappingFragment StoreEntitySet="NABAVKAs">
+          <ScalarProperty Name="TELEFONSKI_DEOID_DEO" ColumnName="TELEFONSKI_DEOID_DEO" />
+          <ScalarProperty Name="SLUZBENIKMBR" ColumnName="SLUZBENIKMBR" />
+          <ScalarProperty Name="CENA" ColumnName="CENA" />
+          <ScalarProperty Name="POPRAVKAOSTECENJEOST_ID" ColumnName="POPRAVKAOSTECENJEOST_ID" />
+          <ScalarProperty Name="POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID" ColumnName="POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID" />
+          <ScalarProperty Name="POPRAVKASERVISERMBR" ColumnName="POPRAVKASERVISERMBR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
