@@ -14,8 +14,8 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
                                 <Button x:Name="AddServisBtn" Click="AddServisBtn_Click"  Height="30" Width="140" Margin="0 5 5 5" >Add Servis</Button>
-                                <Button x:Name="UpdateServisBtn" Click="UpdateServisBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
-                                <Button x:Name="DeleteServisBtn" Click="DeleteServisBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="UpdateServisBtn" Click="UpdateServisBtn_Click" IsEnabled="False" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteServisBtn" Click="DeleteServisBtn_Click" IsEnabled="False" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="ServisDG" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionChanged="ServisDG_SelectionChanged" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
@@ -34,8 +34,8 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
                                 <Button x:Name="AddRadnikBtn"   Click="AddRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Radnik</Button>
-                                <Button x:Name="UpdateRadnikBtn" Click="UpdateRadnikBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
-                                <Button x:Name="DeleteRadnikBtn"  Click="DeleteRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="UpdateRadnikBtn" IsEnabled="False" Click="UpdateRadnikBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteRadnikBtn"  IsEnabled="False" Click="DeleteRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="RadnikDG" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" SelectionChanged="RadnikDG_SelectionChanged" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
@@ -51,7 +51,24 @@
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="Servisni Alat" x:Name="ServisniAlatTab">
-                        
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                <Button x:Name="AddServisniAlatBtn"    Click="AddServisniAlatBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Servisni Alat</Button>
+                                <Button x:Name="UpdateServisniAlatBtn" IsEnabled="False" Click="UpdateServisniAlatBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteServisniAlatBtn"  IsEnabled="False" Click="DeleteServisniAlatBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                            </StackPanel>
+
+                            <DataGrid HorizontalAlignment="Left" x:Name="ServisniAlatDG" SelectionChanged="ServisniAlatDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding ALAT_ID}" Header="ID Alata"/>
+                                    <DataGridTextColumn Binding="{Binding NAZ}" Header="Naziv"/>
+                                    <DataGridTextColumn Binding="{Binding TIP}" Header="Tip"/>
+                                    <DataGridTextColumn Binding="{Binding SERVISSERV_ID}" Header="ID servisa"/>
+                                    <DataGridTextColumn Binding="{Binding KLC}" Header="Kolicina"/>
+                                    <DataGridTextColumn Binding="{Binding SERVISERMBR}" Header="ID servisera"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
                     </TabItem>
                 </TabControl>
 

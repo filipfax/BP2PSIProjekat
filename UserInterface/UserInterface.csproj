@@ -70,6 +70,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EntityCreateUpdaters\ServisniAlatCU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +87,9 @@
     </Compile>
     <Compile Include="EntityCreateUpdaters\RadnikCU.xaml.cs">
       <DependentUpon>RadnikCU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EntityCreateUpdaters\ServisniAlatCU.xaml.cs">
+      <DependentUpon>ServisniAlatCU.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

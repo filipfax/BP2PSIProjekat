@@ -43,6 +43,10 @@ namespace UserInterface
             {
                 LoadAllRadnik();
             }
+            if (this.ServisniAlatTab.IsSelected)
+            {
+                LoadAllServisniAlat();
+            }
         }
 
 
@@ -149,6 +153,11 @@ namespace UserInterface
                 this.DeleteServisBtn.IsEnabled = true;
                 this.UpdateServisBtn.IsEnabled = true;
             }
+            else
+            {
+                this.DeleteServisBtn.IsEnabled = false;
+                this.UpdateServisBtn.IsEnabled = false;
+            }
         }
 
         #endregion Servis
@@ -187,7 +196,7 @@ namespace UserInterface
             return retval;
         }
 
-        public void CreateRadnik(RADNIK r)
+        public void CreateRadnik(SERVISER r)
         {
             try
             {
@@ -220,6 +229,78 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        public void CreateSluzbenik(SLUZBENIK r)
+        {
+            try
+            {
+                dBContext.RADNICI.Add(r);
+                dBContext.SaveChanges();
+                LoadAllRadnik();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        public void UpdateSluzbenik(SLUZBENIK r)
+        {
+            try
+            {
+                var result = dBContext.RADNICI.SingleOrDefault(rad => rad.MBR == r.MBR);
+                if (result != null)
+                {
+                    result.PLT = r.PLT;
+                    result.IME = r.IME;
+                    result.PRZ = r.PRZ;
+                    result.SERVISSERV_ID = r.SERVISSERV_ID;
+                    result.RADNIKMBR = r.RADNIKMBR;
+                    dBContext.SaveChanges();
+                }
+                LoadAllRadnik();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri izmeni entiteta: {e.Message}");
+            }
+        }
+
+        public void CreateServiser(SERVISER r)
+        {
+            try
+            {
+                dBContext.RADNICI.Add(r);
+                dBContext.SaveChanges();
+                LoadAllRadnik();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        public void UpdateServiser(SERVISER r)
+        {
+            try
+            {
+                var result = dBContext.RADNICI.SingleOrDefault(rad => rad.MBR == r.MBR);
+                if (result != null)
+                {
+                    result.PLT = r.PLT;
+                    result.IME = r.IME;
+                    result.PRZ = r.PRZ;
+                    result.SERVISSERV_ID = r.SERVISSERV_ID;
+                    result.RADNIKMBR = r.RADNIKMBR;
+                    dBContext.SaveChanges();
+                }
+                LoadAllRadnik();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri izmeni entiteta: {e.Message}");
             }
         }
 
@@ -261,9 +342,130 @@ namespace UserInterface
                 this.DeleteRadnikBtn.IsEnabled = true;
                 this.UpdateRadnikBtn.IsEnabled = true;
             }
+            else
+            {
+                this.DeleteRadnikBtn.IsEnabled = false;
+                this.UpdateRadnikBtn.IsEnabled = false;
+            }
         }
         #endregion Radnik
 
-        
+        #region ServisniAlat
+        public void LoadAllServisniAlat()
+        {
+            try
+            {
+
+                var query = from b in dBContext.SERVISNI_ALATI
+                            orderby b.ALAT_ID
+                            select b;
+
+                this.ServisniAlatDG.ItemsSource = query.ToList<SERVISNI_ALAT>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public List<int> GetServisniAlatIDs()
+        {
+            var query = from b in dBContext.SERVISNI_ALATI
+                        orderby b.ALAT_ID
+                        select b;
+
+            List<SERVISNI_ALAT> serv = query.ToList<SERVISNI_ALAT>();
+            List<int> retval = new List<int>();
+            foreach (SERVISNI_ALAT s in serv)
+                retval.Add(s.ALAT_ID);
+
+            return retval;
+        }
+
+        public void CreateServisniAlat(SERVISNI_ALAT s)
+        {
+            try
+            {
+                dBContext.SERVISNI_ALATI.Add(s);
+                dBContext.SaveChanges();
+                LoadAllServisniAlat();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        public void UpdateServisniAlat(SERVISNI_ALAT s)
+        {
+            try
+            {
+                var result = dBContext.SERVISNI_ALATI.SingleOrDefault(ser => ser.ALAT_ID == s.ALAT_ID);
+                if (result != null)
+                {
+                    result.NAZ = s.NAZ;
+                    result.TIP = s.TIP;
+                    result.SERVISSERV_ID = s.SERVISSERV_ID;
+                    result.KLC = s.KLC;
+                    result.SERVISERMBR = s.SERVISERMBR;
+                    dBContext.SaveChanges();
+                }
+                LoadAllServisniAlat();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddServisniAlatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ServisniAlatCU rcu = new ServisniAlatCU(this);
+            rcu.ShowDialog();
+
+        }
+
+        private void UpdateServisniAlatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.ServisniAlatDG.SelectedItem != null)
+            {
+                int selectedid = (this.ServisniAlatDG.SelectedItem as SERVISNI_ALAT).ALAT_ID;
+                ServisniAlatCU rcu = new ServisniAlatCU(this, dBContext.SERVISNI_ALATI.Find(selectedid));
+                rcu.ShowDialog();
+            }
+        }
+
+        private void DeleteServisniAlatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.ServisniAlatDG.SelectedItem != null)
+            {
+                int selectedid = (this.ServisniAlatDG.SelectedItem as SERVISNI_ALAT).ALAT_ID;
+                dBContext.SERVISNI_ALATI.Remove(dBContext.SERVISNI_ALATI.Find(selectedid));
+                dBContext.SaveChanges();
+                this.ServisniAlatDG.SelectedItem = null;
+                LoadAllServisniAlat();
+                this.DeleteServisniAlatBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void ServisniAlatDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.ServisniAlatDG.SelectedItem != null)
+            {
+                this.DeleteServisniAlatBtn.IsEnabled = true;
+                this.UpdateServisniAlatBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteServisniAlatBtn.IsEnabled = false;
+                this.UpdateServisniAlatBtn.IsEnabled = false;
+            }
+        }
+        #endregion ServisniAlat
+
+
+
     }
 }

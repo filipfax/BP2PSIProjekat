@@ -1,17 +1,6 @@
 ﻿using BP2Projekat;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace UserInterface.EntityCreateUpdaters
 {
@@ -20,9 +9,10 @@ namespace UserInterface.EntityCreateUpdaters
     /// </summary>
     public partial class RadnikCU : Window
     {
-        bool isUpdate = false;
-        MainWindow mw = null;
-        List<int> mbrs = new List<int>();
+        private bool isUpdate = false;
+        private MainWindow mw = null;
+        private List<int> mbrs = new List<int>();
+
         public RadnikCU(MainWindow mw, RADNIK radnik = null)
         {
             InitializeComponent();
@@ -30,14 +20,12 @@ namespace UserInterface.EntityCreateUpdaters
 
             this.ServisCB.ItemsSource = mw.GetServisIDs();
             this.NadCB.ItemsSource = mw.GetRadnikIDs();
+            this.TipCB.ItemsSource = new List<string> { "Sluzbenik", "Serviser" };
 
             if (radnik != null)
             {
-
                 PrepareEdit(radnik);
             }
-
-          
         }
 
         private void PrepareEdit(RADNIK s)
@@ -55,50 +43,69 @@ namespace UserInterface.EntityCreateUpdaters
 
             this.NadCB.SelectedItem = s.NADREDJEN;
 
-            
-
             this.CreateBtn.Content = "Update";
             this.isUpdate = true;
 
             List<int> str = (List<int>)this.NadCB.ItemsSource;
             str.Remove(s.MBR);
             this.NadCB.ItemsSource = str;
-
         }
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ValidateInput())
             {
-
-                RADNIK s = new RADNIK
+                if (TipCB.SelectedItem.ToString().Equals("Sluzbenik"))
                 {
-                    MBR = int.Parse(MBRTB.Text),
-                    PLT = int.Parse(PLTTB.Text),
-                    IME = IMETB.Text,
-                    PRZ = PREZTB.Text,
-                    
+                    SLUZBENIK s = new SLUZBENIK
+                    {
+                        MBR = int.Parse(MBRTB.Text),
+                        PLT = int.Parse(PLTTB.Text),
+                        IME = IMETB.Text,
+                        PRZ = PREZTB.Text,
+                    };
+                    if (NadCB.SelectedItem != null)
+                        s.RADNIKMBR = int.Parse((string)NadCB.SelectedItem.ToString());
+                    if (ServisCB.SelectedItem != null)
+                        s.SERVISSERV_ID = int.Parse(ServisCB.SelectedItem.ToString());
 
-
-                };
-
-                if (NadCB.SelectedItem != null)
-                    s.RADNIKMBR = int.Parse((string)NadCB.SelectedItem.ToString());
-                if (ServisCB.SelectedItem != null)
-                    s.SERVISSERV_ID = int.Parse(ServisCB.SelectedItem.ToString());
-
-                if (!isUpdate)
-                {
-
-                    mw.CreateRadnik(s);
+                    if (!isUpdate)
+                    {
+                        mw.CreateSluzbenik(s);
+                    }
+                    else
+                    {
+                        mw.UpdateSluzbenik (s);
+                    }
+                    this.Close();
                 }
-                else
+                else if (TipCB.SelectedItem.ToString().Equals("Serviser"))
                 {
-                    mw.UpdateRadnik(s);
+                    SERVISER s = new SERVISER
+                    {
+                        MBR = int.Parse(MBRTB.Text),
+                        PLT = int.Parse(PLTTB.Text),
+                        IME = IMETB.Text,
+                        PRZ = PREZTB.Text,
+                    };
+                    if (NadCB.SelectedItem != null)
+                        s.RADNIKMBR = int.Parse((string)NadCB.SelectedItem.ToString());
+                    if (ServisCB.SelectedItem != null)
+                        s.SERVISSERV_ID = int.Parse(ServisCB.SelectedItem.ToString());
+
+                    if (!isUpdate)
+                    {
+                        mw.CreateServiser(s);
+                    }
+                    else
+                    {
+                        mw.UpdateServiser(s);
+                    }
+                    this.Close();
                 }
-                this.Close();
+
+                
             }
-
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -122,8 +129,6 @@ namespace UserInterface.EntityCreateUpdaters
                 PltGRD.Content = "Mora biti validan broj!";
             }
 
-
-
             if (IMETB.Text.Equals(string.Empty))
             {
                 isValid = false;
@@ -136,9 +141,11 @@ namespace UserInterface.EntityCreateUpdaters
                 PrezGRD.Content = "Polje ne sme biti prazno!";
             }
 
-
-
-
+            if (TipCB.SelectedItem == null)
+            {
+                isValid = false;
+                TipGrd.Content = "Morate izabrati tip radnika!";
+            }
 
             return isValid;
         }
