@@ -47,6 +47,10 @@ namespace UserInterface
             {
                 LoadAllServisniAlat();
             }
+            if (this.MusterijaTab.IsSelected)
+            {
+                LoadAllMusterija();
+            }
         }
 
 
@@ -465,6 +469,117 @@ namespace UserInterface
         }
         #endregion ServisniAlat
 
+        #region Musterija
+        public void LoadAllMusterija()
+        {
+            try
+            {
+
+                var query = from b in dBContext.MUSTERIJE
+                            orderby b.MUS_ID
+                            select b;
+
+                this.MusterijaDG.ItemsSource = query.ToList<MUSTERIJA>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public List<int> GetMusterijaIDs()
+        {
+            var query = from b in dBContext.MUSTERIJE
+                        orderby b.MUS_ID
+                        select b;
+
+            List<MUSTERIJA> serv = query.ToList<MUSTERIJA>();
+            List<int> retval = new List<int>();
+            foreach (MUSTERIJA s in serv)
+                retval.Add(s.MUS_ID);
+
+            return retval;
+        }
+        public void CreateMusterija(MUSTERIJA s)
+        {
+            try
+            {
+                dBContext.MUSTERIJE.Add(s);
+                dBContext.SaveChanges();
+                LoadAllMusterija();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdateMusterija(MUSTERIJA mus)
+        {
+            try
+            {
+                var result = dBContext.MUSTERIJE.SingleOrDefault(s => s.MUS_ID == mus.MUS_ID);
+                if (result != null)
+                {
+                    result.IME = mus.IME;
+                    result.PRZ = mus.PRZ;
+                    result.BR_TEL = mus.BR_TEL;
+                    result.EMAIL = mus.EMAIL;
+                    dBContext.SaveChanges();
+                }
+                LoadAllMusterija();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddMusterijaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MusterijaCU scu = new MusterijaCU(this);
+            scu.ShowDialog();
+
+        }
+
+        private void UpdateMusterijaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.MusterijaDG.SelectedItem != null)
+            {
+                int selectedid = (this.MusterijaDG.SelectedItem as MUSTERIJA).MUS_ID;
+                MusterijaCU scu = new MusterijaCU(this, dBContext.MUSTERIJE.Find(selectedid));
+                scu.ShowDialog();
+            }
+        }
+
+        private void DeleteMusterijaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.MusterijaDG.SelectedItem != null)
+            {
+                int selectedid = (this.MusterijaDG.SelectedItem as MUSTERIJA).MUS_ID;
+                dBContext.MUSTERIJE.Remove(dBContext.MUSTERIJE.Find(selectedid));
+                dBContext.SaveChanges();
+                this.MusterijaDG.SelectedItem = null;
+                LoadAllMusterija();
+                this.DeleteMusterijaBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void MusterijaDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.MusterijaDG.SelectedItem != null)
+            {
+                this.DeleteMusterijaBtn.IsEnabled = true;
+                this.UpdateMusterijaBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteMusterijaBtn.IsEnabled = false;
+                this.UpdateMusterijaBtn.IsEnabled = false;
+            }
+        }
+        #endregion Musterija
 
 
     }

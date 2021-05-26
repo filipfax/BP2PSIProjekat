@@ -115,6 +115,16 @@ namespace UserInterface.EntityCreateUpdaters
 
         private bool ValidateInput()
         {
+
+            ImeGRD.Content = "";
+            MbrGRD.Content = "";
+            NadrGRD.Content = "";
+            PltGRD.Content = "";
+            PrezGRD.Content = "";
+            ServGRD.Content = "";
+            TipGrd.Content = "";
+
+
             bool isValid = true;
 
             if (MBRTB.Text.Equals(string.Empty) || !int.TryParse(MBRTB.Text, out int num))

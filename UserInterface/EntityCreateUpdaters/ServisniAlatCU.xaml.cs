@@ -103,6 +103,14 @@ namespace UserInterface.EntityCreateUpdaters
 
         private bool ValidateInput()
         {
+
+            IDGRD.Content = "";
+            KolGRD.Content = "";
+            NazGRD.Content = "";
+            RadGRD.Content = "";
+            ServGRD.Content = "";
+            TipGRD.Content = "";
+
             bool isValid = true;
 
             if (IDTB.Text.Equals(string.Empty) || !int.TryParse(IDTB.Text, out int num))
