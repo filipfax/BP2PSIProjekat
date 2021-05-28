@@ -55,6 +55,10 @@ namespace UserInterface
             {
                 LoadAllMobTel();
             }
+            if (this.OstecenjeTab.IsSelected)
+            {
+                LoadAllOstecenje();
+            }
         }
 
 
@@ -697,6 +701,121 @@ namespace UserInterface
             }
         }
         #endregion MobilniTelefon
+
+        #region Ostecenje
+        public void LoadAllOstecenje()
+        {
+            try
+            {
+
+                var query = from b in dBContext.OSTECENJA
+                            orderby b.OST_ID
+                            select b;
+
+                this.OstecenjeDG.ItemsSource = query.ToList<OSTECENJE>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public List<int> GetOstecenjeIDs()
+        {
+            var query = from b in dBContext.OSTECENJA
+                        orderby b.OST_ID
+                        select b;
+
+            List<OSTECENJE> mob = query.ToList<OSTECENJE>();
+            List<int> retval = new List<int>();
+            foreach (OSTECENJE s in mob)
+                retval.Add(s.OST_ID);
+
+            return retval;
+        }
+        public void CreateOstecenje(OSTECENJE s)
+        {
+            try
+            {
+                dBContext.OSTECENJA.Add(s);
+                dBContext.SaveChanges();
+                LoadAllOstecenje();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdateOstecenje(OSTECENJE ost)
+        {
+            try
+            {
+                var result = dBContext.OSTECENJA.SingleOrDefault(s => s.OST_ID == ost.OST_ID);
+                if (result != null)
+                {
+                    result.TIP_OST = ost.TIP_OST;
+                    result.MOBILNI_TELEFONMOB_ID = ost.MOBILNI_TELEFONMOB_ID;
+                    result.OPIS_OST = ost.OPIS_OST;
+                   
+                    dBContext.SaveChanges();
+                }
+                LoadAllOstecenje();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddOstecenjeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OstecenjeCU ocu = new OstecenjeCU(this);
+            ocu.ShowDialog();
+
+        }
+
+        private void UpdateOstecenjeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.OstecenjeDG.SelectedItem != null)
+            {
+                int selectedid = (this.OstecenjeDG.SelectedItem as OSTECENJE).OST_ID;
+                int selectedid2 = (this.OstecenjeDG.SelectedItem as OSTECENJE).MOBILNI_TELEFONMOB_ID;
+                OstecenjeCU ocu = new OstecenjeCU(this, dBContext.OSTECENJA.Find(selectedid, selectedid2));
+                ocu.ShowDialog();
+
+            }
+        }
+
+        private void DeleteOstecenjeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.OstecenjeDG.SelectedItem != null)
+            {
+                int selectedid = (this.OstecenjeDG.SelectedItem as OSTECENJE).OST_ID;
+                int selectedid2 = (this.OstecenjeDG.SelectedItem as OSTECENJE).MOBILNI_TELEFONMOB_ID;
+                dBContext.OSTECENJA.Remove(dBContext.OSTECENJA.Find(selectedid, selectedid2));
+                dBContext.SaveChanges();
+                this.OstecenjeDG.SelectedItem = null;
+                LoadAllOstecenje();
+                this.DeleteOstecenjeBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void OstecenjeDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.OstecenjeDG.SelectedItem != null)
+            {
+                this.DeleteOstecenjeBtn.IsEnabled = true;
+                this.UpdateOstecenjeBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteOstecenjeBtn.IsEnabled = false;
+                this.UpdateOstecenjeBtn.IsEnabled = false;
+            }
+        }
+        #endregion Ostecenje
 
 
     }

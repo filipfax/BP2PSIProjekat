@@ -70,6 +70,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EntityCreateUpdaters\OstecenjeCU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EntityCreateUpdaters\ServisCU.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +99,9 @@
     </Compile>
     <Compile Include="EntityCreateUpdaters\MusterijaCU.xaml.cs">
       <DependentUpon>MusterijaCU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EntityCreateUpdaters\OstecenjeCU.xaml.cs">
+      <DependentUpon>OstecenjeCU.xaml</DependentUpon>
     </Compile>
     <Compile Include="EntityCreateUpdaters\ServisCU.xaml.cs">
       <DependentUpon>ServisCU.xaml</DependentUpon>
