@@ -86,6 +86,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EntityCreateUpdaters\TelDeoCU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,6 +115,9 @@
     </Compile>
     <Compile Include="EntityCreateUpdaters\ServisniAlatCU.xaml.cs">
       <DependentUpon>ServisniAlatCU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EntityCreateUpdaters\TelDeoCU.xaml.cs">
+      <DependentUpon>TelDeoCU.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

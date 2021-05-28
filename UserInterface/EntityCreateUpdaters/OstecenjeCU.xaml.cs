@@ -41,7 +41,7 @@ namespace UserInterface.EntityCreateUpdaters
         private void PrepareEdit(OSTECENJE s)
         {
             this.IDTB.Text = s.OST_ID.ToString();
-            this.IDGRD.IsEnabled = false;
+            this.IDTB.IsEnabled = false;
 
             this.OpTB.Text = s.OPIS_OST.ToString();
 

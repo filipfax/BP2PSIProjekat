@@ -817,6 +817,121 @@ namespace UserInterface
         }
         #endregion Ostecenje
 
+        #region TelefonskiDeo
+        public void LoadAllTelDeo()
+        {
+            try
+            {
+
+                var query = from b in dBContext.TELEFONSKI_DELOVI
+                            orderby b.ID_DEO
+                            select b;
+
+                this.TelDeoDG.ItemsSource = query.ToList<TELEFONSKI_DEO>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public List<int> GetTelDeoIDs()
+        {
+            var query = from b in dBContext.TELEFONSKI_DELOVI
+                        orderby b.ID_DEO
+                        select b;
+
+            List<TELEFONSKI_DEO> mob = query.ToList<TELEFONSKI_DEO>();
+            List<int> retval = new List<int>();
+            foreach (TELEFONSKI_DEO s in mob)
+                retval.Add(s.ID_DEO);
+
+            return retval;
+        }
+        public void CreateTelDeo(TELEFONSKI_DEO s)
+        {
+            try
+            {
+                dBContext.TELEFONSKI_DELOVI.Add(s);
+                dBContext.SaveChanges();
+                LoadAllTelDeo();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdateTelDeo(TELEFONSKI_DEO td)
+        {
+            try
+            {
+                var result = dBContext.TELEFONSKI_DELOVI.SingleOrDefault(s => s.ID_DEO == td.ID_DEO);
+                if (result != null)
+                {
+                    result.ID_DEO = td.ID_DEO;
+                    result.ORIG = td.ORIG;
+                    result.TIP = td.TIP;
+
+                    dBContext.SaveChanges();
+                }
+                LoadAllTelDeo();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddTelDeoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TelDeoCU ocu = new TelDeoCU(this);
+            ocu.ShowDialog();
+
+        }
+
+        private void UpdateTelDeoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.TelDeoDG.SelectedItem != null)
+            {
+                int selectedid = (this.TelDeoDG.SelectedItem as TELEFONSKI_DEO).ID_DEO;
+                
+                TelDeoCU ocu = new TelDeoCU(this, dBContext.TELEFONSKI_DELOVI.Find(selectedid));
+                ocu.ShowDialog();
+
+            }
+        }
+
+        private void DeleteTelDeoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.TelDeoDG.SelectedItem != null)
+            {
+                int selectedid = (this.TelDeoDG.SelectedItem as TELEFONSKI_DEO).ID_DEO;
+              
+                dBContext.OSTECENJA.Remove(dBContext.OSTECENJA.Find(selectedid));
+                dBContext.SaveChanges();
+                this.TelDeoDG.SelectedItem = null;
+                LoadAllTelDeo();
+                this.DeleteTelDeoBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void TelDeoDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.TelDeoDG.SelectedItem != null)
+            {
+                this.DeleteTelDeoBtn.IsEnabled = true;
+                this.UpdateTelDeoBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteTelDeoBtn.IsEnabled = false;
+                this.UpdateTelDeoBtn.IsEnabled = false;
+            }
+        }
+        #endregion TelefonskiDeo
+
 
     }
 }

@@ -1,0 +1,27 @@
+﻿<Window x:Class="UserInterface.EntityCreateUpdaters.TelDeoCU"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface.EntityCreateUpdaters"
+        mc:Ignorable="d"
+        Title="TelDeoCU" Height="360" Width="320">
+    <Grid>
+        <TextBox  x:Name="IDTB" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+
+
+        <Label Content="ID Dela:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,27,0,0" Width="106" Height="25" />
+        <Label Content="Tip:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,101,0,0" Width="106"  Height="25"/>
+        <Label Content="Originalnost:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,171,0,0" Width="106"  Height="25"/>
+
+        <Button Content="Create" x:Name="CreateBtn" Click="CreateBtn_Click" HorizontalAlignment="Left" Margin="111,264,0,0" VerticalAlignment="Top" Width="82" Height="32"/>
+        <Button Content="Cancel" x:Name="CancelBtn" Click="CancelBtn_Click" HorizontalAlignment="Left" Margin="212,264,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.413,0.396" Height="32"/>
+
+        <Label Content="" x:Name="IDGRD" Foreground="Red"  HorizontalAlignment="Left" Margin="137,52,0,0" VerticalAlignment="Top" Width="150" Height="26"/>
+        <Label Content=""  x:Name="TipGRD" Foreground="Red"  HorizontalAlignment="Left" Margin="137,126,0,0" VerticalAlignment="Top" Width="150" Height="26"/>
+        <Label Content="" x:Name="OrigGRD" Foreground="Red"  HorizontalAlignment="Left" Margin="137,196,0,0" VerticalAlignment="Top" Width="150" Height="26"/>
+
+        <ComboBox x:Name="OrigCB" HorizontalAlignment="Left" Margin="137,171,0,0" VerticalAlignment="Top" Height="25" Width="150"/>
+        <TextBox  x:Name="TipTB" HorizontalAlignment="Left" Height="25" Margin="137,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+    </Grid>
+</Window>

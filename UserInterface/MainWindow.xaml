@@ -130,6 +130,24 @@
                             </DataGrid>
                         </StackPanel>
                     </TabItem>
+                    <TabItem Header="Telefonski Deo" x:Name="TelDeoTab">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                <Button x:Name="AddOBtn"    Click="AddTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add TelDeo</Button>
+                                <Button x:Name="UpdateTelDeoBtn" IsEnabled="False" Click="UpdateTelDeoBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteTelDeoBtn"  IsEnabled="False" Click="DeleteTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                            </StackPanel>
+
+                            <DataGrid HorizontalAlignment="Left" x:Name="TelDeoDG" SelectionChanged="TelDeoDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top"  Width="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding ID_DEO}" Header="ID " Width="Auto" />
+                                    <DataGridTextColumn Binding="{Binding TIP}" Header="Tip" Width="Auto"/>
+                                    <DataGridTextColumn Binding="{Binding ORIG}" Header="Originalnost" Width="Auto"/>
+                                   
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </TabItem>
                 </TabControl>
 
             </TabItem>
