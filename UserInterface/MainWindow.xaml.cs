@@ -51,6 +51,10 @@ namespace UserInterface
             {
                 LoadAllMusterija();
             }
+            if (this.MobTelTab.IsSelected)
+            {
+                LoadAllMobTel();
+            }
         }
 
 
@@ -580,6 +584,119 @@ namespace UserInterface
             }
         }
         #endregion Musterija
+
+        #region MobilniTelefon
+        public void LoadAllMobTel()
+        {
+            try
+            {
+
+                var query = from b in dBContext.MOBILNI_TELEFONI
+                            orderby b.MOB_ID
+                            select b;
+
+                this.MobTelDG.ItemsSource = query.ToList<MOBILNI_TELEFON>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public List<int> GetMobTelIDs()
+        {
+            var query = from b in dBContext.MOBILNI_TELEFONI
+                        orderby b.MOB_ID
+                        select b;
+
+            List<MOBILNI_TELEFON> mob = query.ToList<MOBILNI_TELEFON>();
+            List<int> retval = new List<int>();
+            foreach (MOBILNI_TELEFON s in mob)
+                retval.Add(s.MOB_ID);
+
+            return retval;
+        }
+        public void CreateMobTel(MOBILNI_TELEFON s)
+        {
+            try
+            {
+                dBContext.MOBILNI_TELEFONI.Add(s);
+                dBContext.SaveChanges();
+                LoadAllMobTel();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdateMobTel(MOBILNI_TELEFON mob)
+        {
+            try
+            {
+                var result = dBContext.MOBILNI_TELEFONI.SingleOrDefault(s => s.MOB_ID == mob.MOB_ID);
+                if (result != null)
+                {
+                    result.MODEL = mob.MODEL;
+                    result.MUSTERIJAMUS_ID = mob.MUSTERIJAMUS_ID;
+                    result.OP_SIS = mob.OP_SIS;
+                    result.PROIZV = mob.PROIZV;
+                    dBContext.SaveChanges();
+                }
+                LoadAllMobTel();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddMobTelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MobTelCU mcu = new MobTelCU(this);
+            mcu.ShowDialog();
+
+        }
+
+        private void UpdateMobTelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.MobTelDG.SelectedItem != null)
+            {
+                int selectedid = (this.MobTelDG.SelectedItem as MOBILNI_TELEFON).MOB_ID;
+                MobTelCU mcu = new MobTelCU(this, dBContext.MOBILNI_TELEFONI.Find(selectedid));
+                mcu.ShowDialog();
+                
+            }
+        }
+
+        private void DeleteMobTelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.MobTelDG.SelectedItem != null)
+            {
+                int selectedid = (this.MobTelDG.SelectedItem as MOBILNI_TELEFON).MOB_ID;
+                dBContext.MOBILNI_TELEFONI.Remove(dBContext.MOBILNI_TELEFONI.Find(selectedid));
+                dBContext.SaveChanges();
+                this.MobTelDG.SelectedItem = null;
+                LoadAllMobTel();
+                this.DeleteMobTelBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void MobTelDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.MobTelDG.SelectedItem != null)
+            {
+                this.DeleteMobTelBtn.IsEnabled = true;
+                this.UpdateMobTelBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteMobTelBtn.IsEnabled = false;
+                this.UpdateMobTelBtn.IsEnabled = false;
+            }
+        }
+        #endregion MobilniTelefon
 
 
     }
