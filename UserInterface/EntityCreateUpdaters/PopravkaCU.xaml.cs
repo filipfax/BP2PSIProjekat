@@ -70,12 +70,7 @@ namespace UserInterface.EntityCreateUpdaters
             {
                 POPRAVKA s = new POPRAVKA
                 {
-                    CENA = int.Parse(CenTB.Text),
-                   
-
-
-
-
+                    CENA = int.Parse(CenTB.Text),              
 
                 };
 

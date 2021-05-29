@@ -64,11 +64,7 @@ namespace UserInterface.EntityCreateUpdaters
                 OSTECENJE s = new OSTECENJE
                 {
                     
-                    OPIS_OST = OpTB.Text,
-                   
-
-
-
+                    OPIS_OST = OpTB.Text,                
 
                 };
 

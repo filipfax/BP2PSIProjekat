@@ -16,35 +16,40 @@ using System.Windows.Shapes;
 namespace UserInterface.EntityCreateUpdaters
 {
     /// <summary>
-    /// Interaction logic for ProizvodjacCU.xaml
+    /// Interaction logic for ProizvodnjaCU.xaml
     /// </summary>
-    public partial class ProizvodjacCU : Window
+    public partial class ProizvodnjaCU : Window
     {
         private bool isUpdate = false;
         private MainWindow mw = null;
-        public ProizvodjacCU(MainWindow mw, PROIZVODJAC pr = null)
+        public ProizvodnjaCU(MainWindow mw, PROIZVODNJA pr = null)
         {
-
-            InitializeComponent();
             this.mw = mw;
+            InitializeComponent();
+            this.ProizCB.ItemsSource = mw.GetProizvodjacIDs();
+            this.TelCB.ItemsSource = mw.GetTelDeoIDs();
 
 
             if (pr != null)
             {
                 PrepareEdit(pr);
             }
+
         }
 
-        private void PrepareEdit(PROIZVODJAC pr)
+        private void PrepareEdit(PROIZVODNJA s)
         {
-            this.IDTB.Text = pr.ID_PROIZV.ToString();
-            this.IDTB.IsEnabled = false;
-
-            this.NazTB.Text = pr.NAZ;
+           
 
 
-            this.TelBRTB.Text = pr.TELBROJ.ToString();
 
+            this.ProizCB.SelectedItem = s.PROIZVODJACID_PROIZV;
+            this.ProizCB.IsEnabled = false;
+
+            this.TelCB.SelectedItem = s.TELEFONSKI_DEOID_DEO;
+            this.TelCB.IsEnabled = false;
+
+            
 
             this.CreateBtn.Content = "Update";
             this.isUpdate = true;
@@ -56,24 +61,21 @@ namespace UserInterface.EntityCreateUpdaters
         {
             if (ValidateInput())
             {
-                PROIZVODJAC s = new PROIZVODJAC
-                {
-                    ID_PROIZV = isUpdate == true ? int.Parse(IDTB.Text) : 0,
-                    NAZ = NazTB.Text,
-                    TELBROJ = int.Parse(TelBRTB.Text)
+                PROIZVODNJA s = new PROIZVODNJA();
 
-                };
-
-
-
+                if (ProizCB.SelectedItem != null)
+                    s.PROIZVODJACID_PROIZV = int.Parse((string)ProizCB.SelectedItem.ToString());
+                if (TelCB.SelectedItem != null)
+                    s.TELEFONSKI_DEOID_DEO = int.Parse((TelCB.SelectedItem.ToString()));
+                
 
                 if (!isUpdate)
                 {
-                    mw.CreateProizvodjac(s);
+                    mw.CreateProizvodnja(s);
                 }
                 else
                 {
-                    mw.UpdateProizvodjac(s);
+                    mw.UpdateProizvodnja(s);
                 }
                 this.Close();
 
@@ -89,33 +91,35 @@ namespace UserInterface.EntityCreateUpdaters
         private bool ValidateInput()
         {
 
-
-            NazGRD.Content = "";
-            TelBrGRD.Content = "";
-
+            
+            ProizGRD.Content = "";
+            TelGRD.Content = "";
 
 
 
             bool isValid = true;
 
+            
 
-
-
-            if (NazTB.Text.Equals(string.Empty))
+            if (ProizCB.SelectedItem == null)
             {
                 isValid = false;
-                NazGRD.Content = "Polje ne sme biti prazno!";
+                ProizGRD.Content = "Morate izabrati vrednost!";
             }
 
-            if (TelBRTB.Text.Equals(string.Empty) || !int.TryParse(TelBRTB.Text, out int num3))
+           
+            if (TelCB.SelectedItem == null)
             {
                 isValid = false;
-                TelBrGRD.Content = "Mora biti validan broj!";
+                TelGRD.Content = "Morate izabrati vrednost!";
             }
+
+
 
             return isValid;
-
         }
 
     }
+
+
 }

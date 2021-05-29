@@ -59,7 +59,7 @@ namespace UserInterface.EntityCreateUpdaters
                 {
                     SLUZBENIK s = new SLUZBENIK
                     {
-                       
+                        MBR = isUpdate == true ? int.Parse(MBRTB.Text) : 0,
                         PLT = int.Parse(PLTTB.Text),
                         IME = IMETB.Text,
                         PRZ = PREZTB.Text,

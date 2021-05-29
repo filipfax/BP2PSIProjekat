@@ -62,7 +62,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 MUSTERIJA s = new MUSTERIJA
                 {
-                    MUS_ID = int.Parse(IDTB.Text),
+                    MUS_ID = isUpdate == true ? int.Parse(IDTB.Text) : 0,
                     IME = ImeTB.Text,
                     PRZ = PrezTB.Text,
                     BR_TEL = int.Parse(TelTB.Text),

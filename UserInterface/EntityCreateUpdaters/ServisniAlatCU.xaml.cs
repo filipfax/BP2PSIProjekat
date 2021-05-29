@@ -69,7 +69,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 SERVISNI_ALAT s = new SERVISNI_ALAT
                 {
-                 
+                    ALAT_ID = isUpdate == true ? int.Parse(IDTB.Text) : 0,
                     NAZ = NazTb.Text,     
                     KLC = int.Parse(KolTB.Text),
                     

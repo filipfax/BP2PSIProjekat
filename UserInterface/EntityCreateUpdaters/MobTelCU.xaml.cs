@@ -63,7 +63,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 MOBILNI_TELEFON s = new MOBILNI_TELEFON
                 {
-                  
+                    MOB_ID = isUpdate == true ? int.Parse(IDTB.Text) : 0,
                     PROIZV = ProizvTB.Text,
                     MODEL = ModelTB.Text,
                     

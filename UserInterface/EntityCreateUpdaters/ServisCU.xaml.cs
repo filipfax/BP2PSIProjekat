@@ -62,7 +62,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 SERVIS s = new SERVIS
                 {
-                   
+                    SERV_ID = isUpdate == true ? int.Parse(IDTB.Text) : 0,
                     WEB_STR = WebTB.Text,
                     BR_ZAP = int.Parse(BRZapTB.Text),
                     TELBROJ = int.Parse(TelBrojTB.Text),

@@ -60,13 +60,8 @@ namespace UserInterface.EntityCreateUpdaters
                 {
                     TELEFONSKI_DEO s = new TELEFONSKI_DEO
                     {
-                        
+                        ID_DEO = isUpdate == true ? int.Parse(IDTB.Text) : 0,
                         TIP = TipTB.Text,
-
-
-
-
-
                     };
 
                     if (OrigCB.SelectedItem != null)
