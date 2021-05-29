@@ -133,7 +133,7 @@
                     <TabItem Header="Telefonski Deo" x:Name="TelDeoTab">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
-                                <Button x:Name="AddOBtn"    Click="AddTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add TelDeo</Button>
+                                <Button x:Name="AddTelDeoBtn"    Click="AddTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add TelDeo</Button>
                                 <Button x:Name="UpdateTelDeoBtn" IsEnabled="False" Click="UpdateTelDeoBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteTelDeoBtn"  IsEnabled="False" Click="DeleteTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
                             </StackPanel>
@@ -143,11 +143,50 @@
                                     <DataGridTextColumn Binding="{Binding ID_DEO}" Header="ID " Width="Auto" />
                                     <DataGridTextColumn Binding="{Binding TIP}" Header="Tip" Width="Auto"/>
                                     <DataGridTextColumn Binding="{Binding ORIG}" Header="Originalnost" Width="Auto"/>
-                                   
+
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
                     </TabItem>
+                    <TabItem Header="Popravka" x:Name="PopravkaTab">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                <Button x:Name="AddPopravkaBtn"    Click="AddPopravkaBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Popravka</Button>
+                                <Button x:Name="UpdatePopravkaBtn" IsEnabled="False" Click="UpdatePopravkaBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeletePopravkaBtn"  IsEnabled="False" Click="DeletePopravkaBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                            </StackPanel>
+
+                            <DataGrid HorizontalAlignment="Left" x:Name="PopravkaDG" SelectionChanged="PopravkaDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top"  Width="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding CENA}" Header="Cena " Width="Auto" />
+                                    <DataGridTextColumn Binding="{Binding OSTECENJEOST_ID}" Header="ID Ostecenja" Width="Auto"/>
+                                    <DataGridTextColumn Binding="{Binding OSTECENJEMOBILNI_TELEFONMOB_ID}" Header="ID Mob. Tel." Width="Auto"/>
+                                    <DataGridTextColumn Binding="{Binding SERVISERMBR}" Header="MBR Servisera" Width="Auto"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Proizvodjac" x:Name="ProizvodjacTab">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                <Button x:Name="AddProizvodjacBtn"    Click="AddProizvodjacBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Proizvodjac</Button>
+                                <Button x:Name="UpdateProizvodjacBtn" IsEnabled="False" Click="UpdateProizvodjacBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
+                                <Button x:Name="DeleteProizvodjacBtn"  IsEnabled="False" Click="DeleteProizvodjacBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                            </StackPanel>
+
+                            <DataGrid HorizontalAlignment="Left" x:Name="ProizvodjacDG" SelectionChanged="ProizvodjacDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top"  Width="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding ID_PROIZV}" Header="ID " Width="Auto" />
+                                    <DataGridTextColumn Binding="{Binding NAZ}" Header="Naziv" Width="Auto"/>
+                                    <DataGridTextColumn Binding="{Binding TELBROJ}" Header="Broj Telefona" Width="Auto"/>
+                                    
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </TabItem>
+
                 </TabControl>
 
             </TabItem>

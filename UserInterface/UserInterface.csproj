@@ -74,6 +74,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EntityCreateUpdaters\PopravkaCU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EntityCreateUpdaters\ServisCU.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +111,9 @@
     <Compile Include="EntityCreateUpdaters\OstecenjeCU.xaml.cs">
       <DependentUpon>OstecenjeCU.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EntityCreateUpdaters\PopravkaCU.xaml.cs">
+      <DependentUpon>PopravkaCU.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EntityCreateUpdaters\ServisCU.xaml.cs">
       <DependentUpon>ServisCU.xaml</DependentUpon>
     </Compile>
@@ -123,8 +130,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="EntityCreateUpdaters\ProizvodjacCU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityCreateUpdaters\ProizvodjacCU.xaml.cs">
+      <DependentUpon>ProizvodjacCU.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

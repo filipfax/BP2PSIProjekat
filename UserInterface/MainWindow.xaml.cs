@@ -23,12 +23,16 @@ namespace UserInterface
     public partial class MainWindow : Window
     {
         ProjekatModelDBContext dBContext;
-
+        public Dictionary<int, SLUZBENIK> sluzbenici;
+        public Dictionary<int, SERVISER> serviseri;
         public MainWindow()
         {
             InitializeComponent();
             dBContext = new ProjekatModelDBContext();
             LoadAllServis();
+            serviseri = new Dictionary<int, SERVISER>();
+            sluzbenici = new Dictionary<int, SLUZBENIK>();
+
             this.DeleteServisBtn.IsEnabled = false;
             this.UpdateServisBtn.IsEnabled = false;
         }
@@ -58,6 +62,22 @@ namespace UserInterface
             if (this.OstecenjeTab.IsSelected)
             {
                 LoadAllOstecenje();
+            }
+            if (this.OstecenjeTab.IsSelected)
+            {
+                LoadAllOstecenje();
+            }
+            if (this.TelDeoTab.IsSelected)
+            {
+                LoadAllTelDeo();
+            }
+            if (this.PopravkaTab.IsSelected)
+            {
+                LoadAllPopravka();
+            }
+            if (this.ProizvodjacTab.IsSelected)
+            {
+                LoadAllProizvodjac();
             }
         }
 
@@ -251,6 +271,7 @@ namespace UserInterface
                 dBContext.RADNICI.Add(r);
                 dBContext.SaveChanges();
                 LoadAllRadnik();
+                sluzbenici.Add(r.MBR,r);
             }
             catch (Exception e)
             {
@@ -272,6 +293,7 @@ namespace UserInterface
                     result.RADNIKMBR = r.RADNIKMBR;
                     dBContext.SaveChanges();
                 }
+                sluzbenici[r.MBR] = r;
                 LoadAllRadnik();
             }
             catch (Exception e)
@@ -286,6 +308,7 @@ namespace UserInterface
             {
                 dBContext.RADNICI.Add(r);
                 dBContext.SaveChanges();
+                serviseri.Add(r.MBR, r);
                 LoadAllRadnik();
             }
             catch (Exception e)
@@ -308,6 +331,7 @@ namespace UserInterface
                     result.RADNIKMBR = r.RADNIKMBR;
                     dBContext.SaveChanges();
                 }
+                serviseri[r.MBR] = r;
                 LoadAllRadnik();
             }
             catch (Exception e)
@@ -721,6 +745,24 @@ namespace UserInterface
 
         }
 
+        public List<OSTECENJE> GetAllOstecenje()
+        {
+            try
+            {
+
+                var query = from b in dBContext.OSTECENJA
+                            orderby b.OST_ID
+                            select b;
+
+                return query.ToList<OSTECENJE>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<OSTECENJE>();
+            }
+        }
+
         public List<int> GetOstecenjeIDs()
         {
             var query = from b in dBContext.OSTECENJA
@@ -932,6 +974,216 @@ namespace UserInterface
         }
         #endregion TelefonskiDeo
 
+        #region Popravka
+        public void LoadAllPopravka()
+        {
+            try
+            {
+
+                var query = from b in dBContext.POPRAVKAs
+                            orderby b.SERVISERMBR
+                            select b;
+
+                this.PopravkaDG.ItemsSource = query.ToList<POPRAVKA>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+       
+        public void CreatePopravka(POPRAVKA s)
+        {
+            try
+            {
+                dBContext.POPRAVKAs.Add(s);
+                dBContext.SaveChanges();
+                LoadAllPopravka();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdatePopravka(POPRAVKA pop)
+        {
+            try
+            {
+                var result = dBContext.POPRAVKAs.SingleOrDefault(p => p.OSTECENJEOST_ID == pop.OSTECENJEOST_ID && 
+                                                                      p.OSTECENJEMOBILNI_TELEFONMOB_ID == pop.OSTECENJEMOBILNI_TELEFONMOB_ID &&
+                                                                      p.SERVISERMBR == pop.SERVISERMBR);
+                if (result != null)
+                {
+                    result.CENA = pop.CENA;               
+                    dBContext.SaveChanges();
+                }
+                LoadAllPopravka();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddPopravkaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PopravkaCU ocu = new PopravkaCU(this);
+            ocu.ShowDialog();
+
+        }
+
+        private void UpdatePopravkaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.PopravkaDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.PopravkaDG.SelectedItem as POPRAVKA).OSTECENJEOST_ID;
+                int selectedid2 = (this.PopravkaDG.SelectedItem as POPRAVKA).OSTECENJEMOBILNI_TELEFONMOB_ID;
+                int selectedid3 = (this.PopravkaDG.SelectedItem as POPRAVKA).SERVISERMBR;
+
+                PopravkaCU ocu = new PopravkaCU(this, dBContext.POPRAVKAs.Find(selectedid1, selectedid2, selectedid3));
+                ocu.ShowDialog();
+
+            }
+        }
+
+        private void DeletePopravkaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.PopravkaDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.PopravkaDG.SelectedItem as POPRAVKA).OSTECENJEOST_ID;
+                int selectedid2 = (this.PopravkaDG.SelectedItem as POPRAVKA).OSTECENJEMOBILNI_TELEFONMOB_ID;
+                int selectedid3 = (this.PopravkaDG.SelectedItem as POPRAVKA).SERVISERMBR;
+
+                dBContext.POPRAVKAs.Remove(dBContext.POPRAVKAs.Find(selectedid1, selectedid2, selectedid3));
+                dBContext.SaveChanges();
+                this.PopravkaDG.SelectedItem = null;
+                LoadAllPopravka();
+                this.DeletePopravkaBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void PopravkaDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.PopravkaDG.SelectedItem != null)
+            {
+                this.DeletePopravkaBtn.IsEnabled = true;
+                this.UpdatePopravkaBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeletePopravkaBtn.IsEnabled = false;
+                this.UpdatePopravkaBtn.IsEnabled = false;
+            }
+        }
+
+        #endregion Popravka
+
+        #region Proizvodjac
+        public void LoadAllProizvodjac()
+        {
+            try
+            {
+
+                var query = from b in dBContext.PROIZVODJACI
+                            orderby b.ID_PROIZV
+                            select b;
+
+                this.ProizvodjacDG.ItemsSource = query.ToList<PROIZVODJAC>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+
+        public void CreateProizvodjac(PROIZVODJAC s)
+        {
+            try
+            {
+                dBContext.PROIZVODJACI.Add(s);
+                dBContext.SaveChanges();
+                LoadAllProizvodjac();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdateProizvodjac(PROIZVODJAC pop)
+        {
+            try
+            {
+                var result = dBContext.PROIZVODJACI.SingleOrDefault(p => p.ID_PROIZV == pop.ID_PROIZV);
+                if (result != null)
+                {
+                    result.NAZ = pop.NAZ;
+                    result.TELBROJ = pop.TELBROJ;
+                    dBContext.SaveChanges();
+                }
+                LoadAllProizvodjac();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddProizvodjacBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProizvodjacCU ocu = new ProizvodjacCU(this);
+            ocu.ShowDialog();
+
+        }
+
+        private void UpdateProizvodjacBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.ProizvodjacDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.ProizvodjacDG.SelectedItem as PROIZVODJAC).ID_PROIZV;
+               
+
+                ProizvodjacCU ocu = new ProizvodjacCU(this, dBContext.PROIZVODJACI.Find(selectedid1));
+                ocu.ShowDialog();
+
+            }
+        }
+
+        private void DeleteProizvodjacBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.ProizvodjacDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.ProizvodjacDG.SelectedItem as PROIZVODJAC).ID_PROIZV;
+              
+
+                dBContext.PROIZVODJACI.Remove(dBContext.PROIZVODJACI.Find(selectedid1));
+                dBContext.SaveChanges();
+                this.ProizvodjacDG.SelectedItem = null;
+                LoadAllProizvodjac();
+                this.DeleteProizvodjacBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void ProizvodjacDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.ProizvodjacDG.SelectedItem != null)
+            {
+                this.DeleteProizvodjacBtn.IsEnabled = true;
+                this.UpdateProizvodjacBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteProizvodjacBtn.IsEnabled = false;
+                this.UpdateProizvodjacBtn.IsEnabled = false;
+            }
+        }
+
+        #endregion Proizvodjac
 
     }
 }
