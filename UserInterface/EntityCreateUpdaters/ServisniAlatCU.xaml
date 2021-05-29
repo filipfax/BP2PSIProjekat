@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ServisniAlatCU" Height="520" Width="320">
     <Grid>
-        <TextBox  x:Name="IDTB" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBox  x:Name="IDTB" IsEnabled="False" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <TextBox x:Name="NazTb" HorizontalAlignment="Left" Height="25" Margin="137,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <TextBox  x:Name="KolTB" HorizontalAlignment="Left" Height="25" Margin="137,305,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <Label Content="ID Alata:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,27,0,0" Width="106" Height="25" />

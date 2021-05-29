@@ -10,9 +10,9 @@
         <TextBox  x:Name="IDTB" HorizontalAlignment="Left" IsEnabled="False" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
 
 
-        <Label Content="ID Dela:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,27,0,0" Width="106" Height="25" />
+        <Label Content="ID Proizvodjaca:" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,27,0,0" Width="106" Height="25" />
         <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,101,0,0" Width="106"  Height="25"/>
-        <Label Content="Telefonski Broj::" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,171,0,0" Width="106"  Height="25"/>
+        <Label Content="Telefonski Broj:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,171,0,0" Width="106"  Height="25"/>
 
         <Button Content="Create" x:Name="CreateBtn" Click="CreateBtn_Click" HorizontalAlignment="Left" Margin="111,264,0,0" VerticalAlignment="Top" Width="82" Height="32"/>
         <Button Content="Cancel" x:Name="CancelBtn" Click="CancelBtn_Click" HorizontalAlignment="Left" Margin="212,264,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.413,0.396" Height="32"/>

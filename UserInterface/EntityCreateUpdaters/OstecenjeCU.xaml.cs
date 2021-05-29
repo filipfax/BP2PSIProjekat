@@ -63,7 +63,7 @@ namespace UserInterface.EntityCreateUpdaters
             {
                 OSTECENJE s = new OSTECENJE
                 {
-                    OST_ID = int.Parse(IDTB.Text),
+                    
                     OPIS_OST = OpTB.Text,
                    
 
@@ -108,11 +108,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             bool isValid = true;
 
-            if (IDTB.Text.Equals(string.Empty) || !int.TryParse(IDTB.Text, out int num))
-            {
-                isValid = false;
-                IDGRD.Content = "Mora biti validan broj!";
-            }
+         
 
             if (MobCB.SelectedItem == null)
             {

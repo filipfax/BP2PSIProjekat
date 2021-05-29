@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="RadnikCU" Height="620" Width="320">
     <Grid>
-        <TextBox  x:Name="MBRTB" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBox  x:Name="MBRTB"  IsEnabled="False" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <TextBox x:Name="PLTTB" HorizontalAlignment="Left" Height="25" Margin="137,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <TextBox   x:Name="IMETB"   HorizontalAlignment="Left" Height="25" Margin="137,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <TextBox  x:Name="PREZTB" HorizontalAlignment="Left" Height="25" Margin="137,238,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
 
-        <Label Content="Maticni Broj:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,27,0,0" Width="106" Height="25" />
+        <Label Content="Maticni Broj:"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,27,0,0" Width="106" Height="25" />
         <Label Content="Plata:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,101,0,0" Width="106"  Height="25"/>
         <Label Content="Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,171,0,0" Width="106"  Height="25"/>
         <Label Content="Prezime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,238,0,0" Width="106"  Height="25"/>

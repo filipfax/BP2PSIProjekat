@@ -69,7 +69,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 SERVISNI_ALAT s = new SERVISNI_ALAT
                 {
-                    ALAT_ID = int.Parse(IDTB.Text),
+                 
                     NAZ = NazTb.Text,     
                     KLC = int.Parse(KolTB.Text),
                     
@@ -113,11 +113,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             bool isValid = true;
 
-            if (IDTB.Text.Equals(string.Empty) || !int.TryParse(IDTB.Text, out int num))
-            {
-                isValid = false;
-                IDGRD.Content = "Mora biti validan broj!";
-            }
+          
 
             if (NazTb.Text.Equals(string.Empty))
             {

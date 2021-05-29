@@ -100,11 +100,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             bool isValid = true;
 
-            if (IDTB.Text.Equals(string.Empty) || !int.TryParse(IDTB.Text, out int num))
-            {
-                isValid = false;
-                IDGRD.Content = "Mora biti validan broj!";
-            }
+           
 
             if (ImeTB.Text.Equals(string.Empty))
             {

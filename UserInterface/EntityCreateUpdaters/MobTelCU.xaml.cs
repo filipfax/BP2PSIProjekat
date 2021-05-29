@@ -63,7 +63,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 MOBILNI_TELEFON s = new MOBILNI_TELEFON
                 {
-                    MOB_ID = int.Parse(IDTB.Text),
+                  
                     PROIZV = ProizvTB.Text,
                     MODEL = ModelTB.Text,
                     
@@ -105,11 +105,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             bool isValid = true;
 
-            if (IDTB.Text.Equals(string.Empty) || !int.TryParse(IDTB.Text, out int num))
-            {
-                isValid = false;
-                IDGRD.Content = "Mora biti validan broj!";
-            }
+          
 
             if (ModelTB.Text.Equals(string.Empty))
             {

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="OstecenjeCU" Height="500" Width="320">
     <Grid>
-        <TextBox  x:Name="IDTB" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBox IsEnabled="False" x:Name="IDTB" HorizontalAlignment="Left" Height="25" Margin="137,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <TextBox x:Name="OpTB" HorizontalAlignment="Left" Height="97" Margin="132,238,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
        
 

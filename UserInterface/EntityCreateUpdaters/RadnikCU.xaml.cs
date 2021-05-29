@@ -59,7 +59,7 @@ namespace UserInterface.EntityCreateUpdaters
                 {
                     SLUZBENIK s = new SLUZBENIK
                     {
-                        MBR = int.Parse(MBRTB.Text),
+                       
                         PLT = int.Parse(PLTTB.Text),
                         IME = IMETB.Text,
                         PRZ = PREZTB.Text,
@@ -83,7 +83,7 @@ namespace UserInterface.EntityCreateUpdaters
                 {
                     SERVISER s = new SERVISER
                     {
-                        MBR = int.Parse(MBRTB.Text),
+                       
                         PLT = int.Parse(PLTTB.Text),
                         IME = IMETB.Text,
                         PRZ = PREZTB.Text,
@@ -127,11 +127,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             bool isValid = true;
 
-            if (MBRTB.Text.Equals(string.Empty) || !int.TryParse(MBRTB.Text, out int num))
-            {
-                isValid = false;
-                MbrGRD.Content = "Mora biti validan broj!";
-            }
+          
 
             if (PLTTB.Text.Equals(string.Empty) || !int.TryParse(PLTTB.Text, out int num2))
             {

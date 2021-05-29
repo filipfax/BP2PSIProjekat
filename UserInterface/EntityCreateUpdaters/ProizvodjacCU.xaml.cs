@@ -58,7 +58,7 @@ namespace UserInterface.EntityCreateUpdaters
             {
                 PROIZVODJAC s = new PROIZVODJAC
                 {
-                    ID_PROIZV = int.Parse(IDTB.Text),
+                 
                     NAZ = NazTB.Text,
                     TELBROJ = int.Parse(TelBRTB.Text)
 

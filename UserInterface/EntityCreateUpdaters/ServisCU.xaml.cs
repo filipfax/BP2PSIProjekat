@@ -62,7 +62,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 SERVIS s = new SERVIS
                 {
-                    SERV_ID = int.Parse(IDTB.Text),
+                   
                     WEB_STR = WebTB.Text,
                     BR_ZAP = int.Parse(BRZapTB.Text),
                     TELBROJ = int.Parse(TelBrojTB.Text),
@@ -104,11 +104,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             bool isValid = true;
 
-            if(IDTB.Text.Equals(string.Empty)|| !int.TryParse(IDTB.Text, out int num))
-            {
-                isValid = false;
-                IDGRD.Content = "Mora biti validan broj!";
-            }
+           
 
             if (WebTB.Text.Equals(string.Empty)){
                 isValid = false;

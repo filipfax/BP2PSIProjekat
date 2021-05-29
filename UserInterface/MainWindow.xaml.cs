@@ -25,6 +25,7 @@ namespace UserInterface
         ProjekatModelDBContext dBContext;
         public Dictionary<int, SLUZBENIK> sluzbenici;
         public Dictionary<int, SERVISER> serviseri;
+        public List<string> popravkecombinedIDs;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace UserInterface
             LoadAllServis();
             serviseri = new Dictionary<int, SERVISER>();
             sluzbenici = new Dictionary<int, SLUZBENIK>();
+            popravkecombinedIDs = new List<string>();
 
             this.DeleteServisBtn.IsEnabled = false;
             this.UpdateServisBtn.IsEnabled = false;
@@ -78,6 +80,10 @@ namespace UserInterface
             if (this.ProizvodjacTab.IsSelected)
             {
                 LoadAllProizvodjac();
+            }
+            if (this.NabavkaTab.IsSelected)
+            {
+                LoadAllNabavka();
             }
         }
 
@@ -950,7 +956,7 @@ namespace UserInterface
             {
                 int selectedid = (this.TelDeoDG.SelectedItem as TELEFONSKI_DEO).ID_DEO;
               
-                dBContext.OSTECENJA.Remove(dBContext.OSTECENJA.Find(selectedid));
+                dBContext.TELEFONSKI_DELOVI.Remove(dBContext.TELEFONSKI_DELOVI.Find(selectedid));
                 dBContext.SaveChanges();
                 this.TelDeoDG.SelectedItem = null;
                 LoadAllTelDeo();
@@ -994,6 +1000,28 @@ namespace UserInterface
         }
 
        
+        public void CreatePopravkeCombinedIDs()
+        {
+            try
+            {
+
+                var query = from b in dBContext.POPRAVKAs
+                            orderby b.SERVISERMBR
+                            select b;
+
+              
+                foreach(POPRAVKA p in query.ToList<POPRAVKA>())
+                {
+                    popravkecombinedIDs.Add( $"{p.OSTECENJEOST_ID}-{p.OSTECENJEMOBILNI_TELEFONMOB_ID}-{p.SERVISERMBR}");
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         public void CreatePopravka(POPRAVKA s)
         {
             try
@@ -1185,5 +1213,111 @@ namespace UserInterface
 
         #endregion Proizvodjac
 
+        #region Nabavka
+        public void LoadAllNabavka()
+        {
+            try
+            {
+
+                var query = from b in dBContext.NABAVKAs
+                            orderby b.SLUZBENIKMBR
+                            select b;
+
+                this.NabavkaDG.ItemsSource = query.ToList<NABAVKA>();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+
+        public void CreateNabavka(NABAVKA s)
+        {
+            try
+            {
+                dBContext.NABAVKAs.Add(s);
+                dBContext.SaveChanges();
+                LoadAllNabavka();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+        public void UpdateNabavka(NABAVKA pop)
+        {
+            try
+            {
+                var result = dBContext.NABAVKAs.SingleOrDefault(p => p.SLUZBENIKMBR == pop.SLUZBENIKMBR && p.TELEFONSKI_DEOID_DEO == pop.TELEFONSKI_DEOID_DEO);
+                if (result != null)
+                {
+                    result.CENA = pop.CENA;
+                    result.POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID = pop.POPRAVKAOSTECENJEMOBILNI_TELEFONMOB_ID;
+                    result.POPRAVKAOSTECENJEOST_ID = pop.POPRAVKAOSTECENJEOST_ID;
+                    result.POPRAVKASERVISERMBR = pop.POPRAVKASERVISERMBR;
+                    dBContext.SaveChanges();
+                }
+                LoadAllNabavka();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+            }
+        }
+
+        private void AddNabavkaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NabavkaCU ocu = new NabavkaCU(this);
+            ocu.ShowDialog();
+
+        }
+
+        private void UpdateNabavkaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.NabavkaDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.NabavkaDG.SelectedItem as NABAVKA).SLUZBENIKMBR;
+                int selectedid2 = (this.NabavkaDG.SelectedItem as NABAVKA).TELEFONSKI_DEOID_DEO;
+
+                
+                NabavkaCU ocu = new NabavkaCU(this, dBContext.NABAVKAs.Find(selectedid2, selectedid1));
+                ocu.ShowDialog();
+
+            }
+        }
+
+        private void DeleteNabavkaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.NabavkaDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.NabavkaDG.SelectedItem as NABAVKA).SLUZBENIKMBR;
+                int selectedid2 = (this.NabavkaDG.SelectedItem as NABAVKA).TELEFONSKI_DEOID_DEO;
+
+                dBContext.NABAVKAs.Remove(dBContext.NABAVKAs.Find(selectedid2, selectedid1));
+                dBContext.SaveChanges();
+                this.NabavkaDG.SelectedItem = null;
+                LoadAllNabavka();
+                this.DeleteNabavkaBtn.IsEnabled = false;
+
+            }
+        }
+
+        private void NabavkaDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.NabavkaDG.SelectedItem != null)
+            {
+                this.DeleteNabavkaBtn.IsEnabled = true;
+                this.UpdateNabavkaBtn.IsEnabled = true;
+            }
+            else
+            {
+                this.DeleteNabavkaBtn.IsEnabled = false;
+                this.UpdateNabavkaBtn.IsEnabled = false;
+            }
+        }
+
+        #endregion Nabavka
     }
 }

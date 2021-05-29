@@ -60,7 +60,7 @@ namespace UserInterface.EntityCreateUpdaters
                 {
                     TELEFONSKI_DEO s = new TELEFONSKI_DEO
                     {
-                        ID_DEO = int.Parse(IDTB.Text),
+                        
                         TIP = TipTB.Text,
 
 
@@ -104,11 +104,7 @@ namespace UserInterface.EntityCreateUpdaters
 
                 bool isValid = true;
 
-                if (IDTB.Text.Equals(string.Empty) || !int.TryParse(IDTB.Text, out int num))
-                {
-                    isValid = false;
-                    IDGRD.Content = "Mora biti validan broj!";
-                }
+              
 
                 if (OrigCB.SelectedItem == null)
                 {
