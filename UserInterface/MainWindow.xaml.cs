@@ -288,11 +288,12 @@ namespace UserInterface
                 dBContext.RADNICI.Add(r);
                 dBContext.SaveChanges();
                 LoadAllRadnik();
-                sluzbenici.Add(r.MBR,r);
+               
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -325,12 +326,15 @@ namespace UserInterface
             {
                 dBContext.RADNICI.Add(r);
                 dBContext.SaveChanges();
-                serviseri.Add(r.MBR, r);
+               
                 LoadAllRadnik();
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                
+                Console.WriteLine($"Greska pri dodavanju entiteta: {e.InnerException.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
         }
 
@@ -354,6 +358,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri izmeni entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri izmeni entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -459,6 +464,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -481,6 +487,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -575,6 +582,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateMusterija(MUSTERIJA mus)
@@ -595,6 +603,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -690,6 +699,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateMobTel(MOBILNI_TELEFON mob)
@@ -710,6 +720,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -821,6 +832,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateOstecenje(OSTECENJE ost)
@@ -841,6 +853,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -936,6 +949,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateTelDeo(TELEFONSKI_DEO td)
@@ -956,6 +970,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1061,6 +1076,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdatePopravka(POPRAVKA pop)
@@ -1080,6 +1096,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1181,6 +1198,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateProizvodjac(PROIZVODJAC pop)
@@ -1199,6 +1217,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1285,6 +1304,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateNabavka(NABAVKA pop)
@@ -1305,6 +1325,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1392,6 +1413,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateProizvodnja(PROIZVODNJA pop)
@@ -1409,6 +1431,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1496,6 +1519,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void UpdateForma(FORMA pop)
@@ -1516,6 +1540,7 @@ namespace UserInterface
             catch (Exception e)
             {
                 Console.WriteLine($"Greska pri dodavanju entiteta: {e.Message}");
+                MessageBox.Show($"Greska pri dodavanju entiteta: {e.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1584,6 +1609,18 @@ namespace UserInterface
 
         }
 
+        public List<int> GetSluzbeniciIDs()
+        {
+            List<int> items = dBContext.Database.SqlQuery<int>("GetSluzbeniciIDs").ToList();
+            return items;
+        }
+
+        public List<int> GetServiseriIDs()
+        {
+            List<int> items = dBContext.Database.SqlQuery<int>("GetServiseriIDs").ToList();
+            return items;
+        }
+
         public void ProveriInventar(object sender, RoutedEventArgs e)
         {
 
@@ -1602,7 +1639,7 @@ namespace UserInterface
 
             try
             {
-                dBContext.Database.SqlQuery<TELEFONSKI_DEO>("DODAJTELEFONE @count", param).ToList();
+                dBContext.Database.ExecuteSqlCommand("DODAJTELEFONE @count", param);
             }
             catch { }
             LoadAllTelDeo();
@@ -1624,12 +1661,37 @@ namespace UserInterface
 
                 try
                 {
-                    var query = dBContext.Database.SqlQuery<int>("OdrediRacun @musid", param).ToList();
+                    var query = dBContext.Database.SqlQuery<int>($"DECLARE @P_Racun int; BEGIN EXEC @P_Racun = OdrediRacun {selectedid1}; select @P_Racun END;", param).ToList();
                     this.RacunLB.Content = $"Racun iznosi {query[0]} rsd.";
                 }
-                catch { }
+                catch(Exception n){
+                    Console.WriteLine(n.Message);
+                }
                
             }
+
+        }
+
+        private bool isLocked = false;
+        private void LockRadnikBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (isLocked)
+                {
+                    dBContext.Database.ExecuteSqlCommand("DISABLE TRIGGER [MaxRadnikTrigger] on [dbo].[RADNICI]");
+                    isLocked = false;
+                }
+                else
+                {
+                    dBContext.Database.ExecuteSqlCommand("ENABLE TRIGGER[MaxRadnikTrigger] on[dbo].[RADNICI]");
+                    isLocked = true;
+                }
+
+            }
+            catch { }
+            
+           
 
         }
 

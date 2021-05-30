@@ -36,7 +36,7 @@ namespace UserInterface.EntityCreateUpdaters
                 ostecenjaIDs.Add(ost.OST_ID);
 
             this.IDOSCB.ItemsSource = ostecenjaIDs;
-            this.MbrCB.ItemsSource = mw.serviseri.Keys.ToList<int>();
+            this.MbrCB.ItemsSource = mw.GetServiseriIDs();
 
             if (pop != null)
             {

@@ -28,7 +28,7 @@ namespace UserInterface.EntityCreateUpdaters
             InitializeComponent();
 
             this.MusCB.ItemsSource = mw.GetMusterijaIDs();
-            this.MbrCB.ItemsSource = mw.sluzbenici.Keys.ToList();
+            this.MbrCB.ItemsSource = mw.GetSluzbeniciIDs();
             
 
             if (forma != null)

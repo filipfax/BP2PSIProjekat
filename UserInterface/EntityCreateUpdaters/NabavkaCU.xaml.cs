@@ -26,7 +26,7 @@ namespace UserInterface.EntityCreateUpdaters
         {
             InitializeComponent();
             this.mw = mw;
-            this.SluzCB.ItemsSource = mw.sluzbenici.Keys.ToList();
+            this.SluzCB.ItemsSource = mw.GetSluzbeniciIDs();
             this.TelCB.ItemsSource = mw.GetTelDeoIDs();
             mw.CreatePopravkeCombinedIDs();
             this.PopCB.ItemsSource = mw.popravkecombinedIDs;
