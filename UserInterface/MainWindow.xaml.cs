@@ -1,6 +1,7 @@
 ﻿using BP2Projekat;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserInterface.Models;
+using UserInterface.PFTViews;
 using UserInterface.EntityCreateUpdaters;
 
 namespace UserInterface
@@ -385,17 +388,29 @@ namespace UserInterface
             }
         }
 
+        private void SPOJoinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.RadnikDG.SelectedItem != null)
+            {
+                int selectedid = (this.RadnikDG.SelectedItem as RADNIK).MBR;
+                GetSPOJoin(selectedid);
+
+            }
+        }
+
         private void RadnikDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.RadnikDG.SelectedItem != null)
             {
                 this.DeleteRadnikBtn.IsEnabled = true;
                 this.UpdateRadnikBtn.IsEnabled = true;
+                this.SPOJoinBtn.IsEnabled = true;
             }
             else
             {
                 this.DeleteRadnikBtn.IsEnabled = false;
                 this.UpdateRadnikBtn.IsEnabled = false;
+                this.SPOJoinBtn.IsEnabled = false;
             }
         }
         #endregion Radnik
@@ -499,6 +514,8 @@ namespace UserInterface
 
             }
         }
+
+     
 
         private void ServisniAlatDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -618,11 +635,13 @@ namespace UserInterface
             {
                 this.DeleteMusterijaBtn.IsEnabled = true;
                 this.UpdateMusterijaBtn.IsEnabled = true;
+                this.RacunMusterijaBtn.IsEnabled = true;
             }
             else
             {
                 this.DeleteMusterijaBtn.IsEnabled = false;
                 this.UpdateMusterijaBtn.IsEnabled = false;
+                this.RacunMusterijaBtn.IsEnabled = false;
             }
         }
         #endregion Musterija
@@ -1550,5 +1569,70 @@ namespace UserInterface
         }
 
         #endregion Forma
+
+        #region Procedure,Funkcije,Trigeri
+        public void GetSPOJoin(int mbr)
+        {
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("@mbr", mbr)
+            };
+
+            List<Models.SPOJoin> lista = dBContext.Database.SqlQuery<Models.SPOJoin>("ServiserPopravkaOstecenjeJoin @mbr", param).ToList();
+            PFTViews.SPOJoin spview = new PFTViews.SPOJoin(lista);
+            spview.ShowDialog();
+
+        }
+
+        public void ProveriInventar(object sender, RoutedEventArgs e)
+        {
+
+
+            List<Models.Inventar> lista = dBContext.Database.SqlQuery <Models.Inventar>("ProveriInventar").ToList();
+            PFTViews.Inventar spview = new PFTViews.Inventar(lista);
+            spview.ShowDialog();
+        }
+
+        private void Add5TelDeoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SqlParameter[] param = new SqlParameter[]
+           {
+                new SqlParameter("@count", 5)
+           };
+
+            try
+            {
+                dBContext.Database.SqlQuery<TELEFONSKI_DEO>("DODAJTELEFONE @count", param).ToList();
+            }
+            catch { }
+            LoadAllTelDeo();
+
+        }
+
+        private void RacunMusterijaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.MusterijaDG.SelectedItem != null)
+            {
+                int selectedid1 = (this.MusterijaDG.SelectedItem as MUSTERIJA).MUS_ID;
+
+
+
+                SqlParameter[] param = new SqlParameter[]
+           {
+                new SqlParameter("@musid", selectedid1)
+           };
+
+                try
+                {
+                    var query = dBContext.Database.SqlQuery<int>("OdrediRacun @musid", param).ToList();
+                    this.RacunLB.Content = $"Racun iznosi {query[0]} rsd.";
+                }
+                catch { }
+               
+            }
+
+        }
+
+        # endregion Procedure,Funkcije,Trigeri
     }
 }

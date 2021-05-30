@@ -49,7 +49,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             this.TipCB.SelectedItem = s.TIP;
 
-            this.ServisCB.SelectedItem = s.SERVISSERV_ID.ToString();
+            this.ServisCB.SelectedItem = s.SERVISSERV_ID;
 
             this.KolTB.Text = s.KLC.ToString();
 
@@ -80,6 +80,10 @@ namespace UserInterface.EntityCreateUpdaters
                     s.TIP = (TipCB.SelectedItem.ToString());
                 if (RadCB.SelectedItem != null)
                     s.SERVISERMBR = int.Parse((string)RadCB.SelectedItem.ToString());
+                else
+                {
+                    s.SERVISERMBR = null;
+                }
                 if (ServisCB.SelectedItem != null)
                     s.SERVISSERV_ID = int.Parse(ServisCB.SelectedItem.ToString());
 
@@ -142,11 +146,7 @@ namespace UserInterface.EntityCreateUpdaters
             }
 
             
-            if (RadCB.SelectedItem == null)
-            {
-                isValid = false;
-                RadGRD.Content = "Mora biti izabrana vrednost!";
-            }
+            
 
             return isValid;
         }

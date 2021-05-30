@@ -36,6 +36,7 @@
                                 <Button x:Name="AddRadnikBtn"   Click="AddRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Radnik</Button>
                                 <Button x:Name="UpdateRadnikBtn" IsEnabled="False" Click="UpdateRadnikBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteRadnikBtn"  IsEnabled="False" Click="DeleteRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="SPOJoinBtn"  IsEnabled="False" Click="SPOJoinBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Join by MBR</Button>
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="RadnikDG" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" SelectionChanged="RadnikDG_SelectionChanged" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
@@ -56,6 +57,7 @@
                                 <Button x:Name="AddServisniAlatBtn"    Click="AddServisniAlatBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Servisni Alat</Button>
                                 <Button x:Name="UpdateServisniAlatBtn" IsEnabled="False" Click="UpdateServisniAlatBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteServisniAlatBtn"  IsEnabled="False" Click="DeleteServisniAlatBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="ProveriInventarBtn"  Click="ProveriInventar" Height="30" Width="140" Margin="0 5 5 5" >Proveri Inventar</Button>
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="ServisniAlatDG" SelectionChanged="ServisniAlatDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
@@ -76,6 +78,8 @@
                                 <Button x:Name="AddMusterijaBtn"    Click="AddMusterijaBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Musterija</Button>
                                 <Button x:Name="UpdateMusterijaBtn" IsEnabled="False" Click="UpdateMusterijaBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteMusterijaBtn"  IsEnabled="False" Click="DeleteMusterijaBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="RacunMusterijaBtn"  IsEnabled="False" Click="RacunMusterijaBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Odredi Racun</Button>
+                                <Label x:Name="RacunLB" Foreground="ForestGreen" Width="190" Height="30" Margin="0 5 5 5" />
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="MusterijaDG" SelectionChanged="MusterijaDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
@@ -157,6 +161,7 @@
                                 <Button x:Name="AddTelDeoBtn"    Click="AddTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add TelDeo</Button>
                                 <Button x:Name="UpdateTelDeoBtn" IsEnabled="False" Click="UpdateTelDeoBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteTelDeoBtn"  IsEnabled="False" Click="DeleteTelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="Add5TelDeoBtn"    Click="Add5TelDeoBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add 5 Tel. Delova</Button>
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="TelDeoDG" SelectionChanged="TelDeoDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top"  Width="Auto">

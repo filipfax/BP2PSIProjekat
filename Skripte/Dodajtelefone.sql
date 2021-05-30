@@ -1,0 +1,20 @@
+
+ALTER PROCEDURE DODAJTELEFONE
+	@count int
+AS
+BEGIN TRY
+ DECLARE @i int;
+ SET @i = 0;
+ WHILE (@i<@count)
+ BEGIN
+	INSERT INTO [dbo].[TELEFONSKI_DELOVI] ( TIP, ORIG)
+	VALUES ('Ekran',1); 
+	SET @i = @i +1;
+ END
+END TRY
+
+BEGIN CATCH
+	SELECT
+	ERROR_NUMBER() AS ErrorNumber
+	,ERROR_MESSAGE() AS ErrorMessage;
+END CATCH

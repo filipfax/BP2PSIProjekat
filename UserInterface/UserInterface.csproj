@@ -155,10 +155,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PFTViews\Inventar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PFTViews\SPOJoin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityCreateUpdaters\ProizvodjacCU.xaml.cs">
       <DependentUpon>ProizvodjacCU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inventar.cs" />
+    <Compile Include="Models\SPOJoin.cs" />
+    <Compile Include="PFTViews\Inventar.xaml.cs">
+      <DependentUpon>Inventar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PFTViews\SPOJoin.xaml.cs">
+      <DependentUpon>SPOJoin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

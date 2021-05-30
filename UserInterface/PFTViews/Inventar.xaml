@@ -1,0 +1,17 @@
+﻿<Window x:Class="UserInterface.PFTViews.Inventar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterface.PFTViews"
+        mc:Ignorable="d"
+        Title="Inventar" Height="350" Width="230">
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" x:Name="ServisniAlatDG"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10,11,0,0" VerticalAlignment="Top" Width="177">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ALAT_ID}" Header="ID Alata"/>
+                <DataGridTextColumn Binding="{Binding NAZ}" Header="Naziv"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
