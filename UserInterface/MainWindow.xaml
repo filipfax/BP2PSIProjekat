@@ -200,6 +200,8 @@
                                 <Button x:Name="AddProizvodjacBtn"    Click="AddProizvodjacBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Proizvodjac</Button>
                                 <Button x:Name="UpdateProizvodjacBtn" IsEnabled="False" Click="UpdateProizvodjacBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteProizvodjacBtn"  IsEnabled="False" Click="DeleteProizvodjacBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Button x:Name="ProizvodnjaProizvodjacBtn"  IsEnabled="False" Click="ProizvodnjaProizvodjacBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Odredi Proizvodnju</Button>
+                                <Label x:Name="ProizvodnjaLB" Foreground="ForestGreen" Width="190" Height="30" Margin="0 5 5 5" />
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="ProizvodjacDG" SelectionChanged="ProizvodjacDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top"  Width="Auto">
