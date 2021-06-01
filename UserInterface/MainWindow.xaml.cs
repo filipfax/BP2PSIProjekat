@@ -44,7 +44,7 @@ namespace UserInterface
 
         private void EntityTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("Selection Changed!");
+            
             if (this.ServisTab.IsSelected && this.ServisDG.SelectedItem==null)
             {
                 LoadAllServis();
@@ -203,16 +203,25 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
-                if (this.ServisDG.SelectedItem != null)
+                try
                 {
-                    int selectedid = (this.ServisDG.SelectedItem as SERVIS).SERV_ID;
-                    dBContext.SERVIS1.Remove(dBContext.SERVIS1.Find(selectedid));
-                    dBContext.SaveChanges();
-                    this.ServisDG.SelectedItem = null;
-                    LoadAllServis();
-                    this.DeleteServisBtn.IsEnabled = false;
+                    if (this.ServisDG.SelectedItem != null)
+                    {
+                        int selectedid = (this.ServisDG.SelectedItem as SERVIS).SERV_ID;
+                        dBContext.SERVIS1.Remove(dBContext.SERVIS1.Find(selectedid));
+                        dBContext.SaveChanges();
+                        this.ServisDG.SelectedItem = null;
+                        LoadAllServis();
+                        this.DeleteServisBtn.IsEnabled = false;
 
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             }
         }
 
@@ -430,15 +439,23 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
-                if (this.RadnikDG.SelectedItem != null)
+                try
                 {
-                    int selectedid = (this.RadnikDG.SelectedItem as RADNIK).MBR;
-                    dBContext.RADNICI.Remove(dBContext.RADNICI.Find(selectedid));
-                    dBContext.SaveChanges();
-                    this.RadnikDG.SelectedItem = null;
-                    LoadAllRadnik();
-                    this.DeleteRadnikBtn.IsEnabled = false;
+                    if (this.RadnikDG.SelectedItem != null)
+                    {
+                        int selectedid = (this.RadnikDG.SelectedItem as RADNIK).MBR;
+                        dBContext.RADNICI.Remove(dBContext.RADNICI.Find(selectedid));
+                        dBContext.SaveChanges();
+                        this.RadnikDG.SelectedItem = null;
+                        LoadAllRadnik();
+                        this.DeleteRadnikBtn.IsEnabled = false;
 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -576,6 +593,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.ServisniAlatDG.SelectedItem != null)
                 {
                     int selectedid = (this.ServisniAlatDG.SelectedItem as SERVISNI_ALAT).ALAT_ID;
@@ -586,7 +604,14 @@ namespace UserInterface
                     this.DeleteServisniAlatBtn.IsEnabled = false;
 
                 }
-            }
+                
+                }
+                catch (Exception ex)
+                {
+                Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+        }
         }
 
      
@@ -710,6 +735,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.MusterijaDG.SelectedItem != null)
                 {
                     int selectedid = (this.MusterijaDG.SelectedItem as MUSTERIJA).MUS_ID;
@@ -719,6 +745,12 @@ namespace UserInterface
                     LoadAllMusterija();
                     this.DeleteMusterijaBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -845,6 +877,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.MobTelDG.SelectedItem != null)
                 {
                     int selectedid = (this.MobTelDG.SelectedItem as MOBILNI_TELEFON).MOB_ID;
@@ -854,6 +887,12 @@ namespace UserInterface
                     LoadAllMobTel();
                     this.DeleteMobTelBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1000,6 +1039,8 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
+
                 if (this.OstecenjeDG.SelectedItem != null)
                 {
                     int selectedid = (this.OstecenjeDG.SelectedItem as OSTECENJE).OST_ID;
@@ -1010,6 +1051,12 @@ namespace UserInterface
                     LoadAllOstecenje();
                     this.DeleteOstecenjeBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1137,16 +1184,25 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
-                if (this.TelDeoDG.SelectedItem != null)
+                try
                 {
-                    int selectedid = (this.TelDeoDG.SelectedItem as TELEFONSKI_DEO).ID_DEO;
 
-                    dBContext.TELEFONSKI_DELOVI.Remove(dBContext.TELEFONSKI_DELOVI.Find(selectedid));
-                    dBContext.SaveChanges();
-                    this.TelDeoDG.SelectedItem = null;
-                    LoadAllTelDeo();
-                    this.DeleteTelDeoBtn.IsEnabled = false;
+                    if (this.TelDeoDG.SelectedItem != null)
+                    {
+                        int selectedid = (this.TelDeoDG.SelectedItem as TELEFONSKI_DEO).ID_DEO;
 
+                        dBContext.TELEFONSKI_DELOVI.Remove(dBContext.TELEFONSKI_DELOVI.Find(selectedid));
+                        dBContext.SaveChanges();
+                        this.TelDeoDG.SelectedItem = null;
+                        LoadAllTelDeo();
+                        this.DeleteTelDeoBtn.IsEnabled = false;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1283,6 +1339,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.PopravkaDG.SelectedItem != null)
                 {
                     int selectedid1 = (this.PopravkaDG.SelectedItem as POPRAVKA).OSTECENJEOST_ID;
@@ -1295,6 +1352,12 @@ namespace UserInterface
                     LoadAllPopravka();
                     this.DeletePopravkaBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1421,6 +1484,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.ProizvodjacDG.SelectedItem != null)
                 {
                     int selectedid1 = (this.ProizvodjacDG.SelectedItem as PROIZVODJAC).ID_PROIZV;
@@ -1432,6 +1496,12 @@ namespace UserInterface
                     LoadAllProizvodjac();
                     this.DeleteProizvodjacBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1547,6 +1617,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.NabavkaDG.SelectedItem != null)
                 {
                     int selectedid1 = (this.NabavkaDG.SelectedItem as NABAVKA).SLUZBENIKMBR;
@@ -1558,6 +1629,12 @@ namespace UserInterface
                     LoadAllNabavka();
                     this.DeleteNabavkaBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1668,6 +1745,7 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
+                try { 
                 if (this.ProizvodnjaDG.SelectedItem != null)
                 {
                     int selectedid1 = (this.ProizvodnjaDG.SelectedItem as PROIZVODNJA).PROIZVODJACID_PROIZV;
@@ -1679,6 +1757,12 @@ namespace UserInterface
                     LoadAllProizvodnja();
                     this.DeleteProizvodnjaBtn.IsEnabled = false;
 
+                }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1789,17 +1873,25 @@ namespace UserInterface
         {
             using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
             {
-                if (this.FormaDG.SelectedItem != null)
+                try
                 {
-                    int selectedid1 = (this.FormaDG.SelectedItem as FORMA).FORM_ID;
+                    if (this.FormaDG.SelectedItem != null)
+                    {
+                        int selectedid1 = (this.FormaDG.SelectedItem as FORMA).FORM_ID;
 
 
-                    dBContext.FORME.Remove(dBContext.FORME.Find(selectedid1));
-                    dBContext.SaveChanges();
-                    this.FormaDG.SelectedItem = null;
-                    LoadAllForma();
-                    this.DeleteFormaBtn.IsEnabled = false;
+                        dBContext.FORME.Remove(dBContext.FORME.Find(selectedid1));
+                        dBContext.SaveChanges();
+                        this.FormaDG.SelectedItem = null;
+                        LoadAllForma();
+                        this.DeleteFormaBtn.IsEnabled = false;
 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Greska pri brisanju entiteta: {ex.Message}");
+                    MessageBox.Show($"Greska pri brisanju entiteta: {ex.InnerException.InnerException.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -1971,6 +2063,44 @@ namespace UserInterface
             }
         }
 
-        # endregion Procedure,Funkcije,Trigeri
+
+
+        private void AutoChB_Checked(object sender, RoutedEventArgs e)
+        {
+            using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
+            {
+                try
+                {
+                    
+                    
+                        dBContext.Database.ExecuteSqlCommand("ENABLE TRIGGER [AutogenerateOstecenje] on [dbo].[MOBILNI_TELEFONI]");
+                        isLocked = true;
+                    
+
+                }
+                catch { }
+
+
+            }
+        }
+
+        private void AutoChB_Unchecked(object sender, RoutedEventArgs e)
+        {
+            using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
+            {
+                try
+                {
+                    
+                        dBContext.Database.ExecuteSqlCommand("DISABLE TRIGGER [AutogenerateOstecenje] on [dbo].[MOBILNI_TELEFONI]");
+                        isLocked = false;
+                   
+
+                }
+                catch { }
+
+
+            }
+        }
+        #endregion Procedure,Funkcije,Trigeri
     }
 }

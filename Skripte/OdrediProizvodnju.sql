@@ -1,0 +1,14 @@
+
+CREATE FUNCTION OdrediProizvodnju(
+	@idproizv int
+	) RETURNS INT
+AS
+BEGIN 
+DECLARE
+	@ukupnaproizvodnja AS INT;
+
+ SELECT @ukupnaproizvodnja = COUNT (*) FROM (SELECT * FROM [dbo].[PROIZVODJACI] WHERE  [dbo].[PROIZVODJACI].ID_PROIZV = @idproizv) PR
+ JOIN [dbo].[PROIZVODNJAs] PO ON PR.ID_PROIZV = PO.PROIZVODJACID_PROIZV 
+ JOIN [dbo].[TELEFONSKI_DELOVI] DE ON DE.ID_DEO = PO.TELEFONSKI_DEOID_DEO
+ RETURN @ukupnaproizvodnja
+END 

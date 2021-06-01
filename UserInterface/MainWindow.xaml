@@ -122,6 +122,8 @@
                                 <Button x:Name="AddMobTelBtn"    Click="AddMobTelBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Add Mobilni Telefon</Button>
                                 <Button x:Name="UpdateMobTelBtn" IsEnabled="False" Click="UpdateMobTelBtn_Click" Width="140" Margin="0 5 5 5" >Update Selected</Button>
                                 <Button x:Name="DeleteMobTelBtn"  IsEnabled="False" Click="DeleteMobTelBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
+                                <Label Content="Autogenerisi Ostecenje:" Margin="10"/>
+                                <CheckBox x:Name="AutoChB" Margin="-16 16 10 10" IsChecked="False" Checked="AutoChB_Checked" Unchecked="AutoChB_Unchecked" />
                             </StackPanel>
 
                             <DataGrid HorizontalAlignment="Left" x:Name="MobTelDG" SelectionChanged="MobTelDG_SelectionChanged"  HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">

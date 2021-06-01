@@ -1,0 +1,20 @@
+
+CREATE TRIGGER [AutogenerateOstecenje]
+ON [dbo].[MOBILNI_TELEFONI]
+AFTER INSERT
+AS
+BEGIN
+ 
+    DECLARE @MOBID INT
+ 
+    SELECT @MOBID = INSERTED.MOB_ID      
+    FROM INSERTED
+
+    INSERT INTO [dbo].[OSTECENJA] (OPIS_OST, TIP_OST, MOBILNI_TELEFONMOB_ID)
+	VALUES ('autogenOpis','Softversko', @MOBID); 
+END
+
+
+DISABLE TRIGGER [AutogenerateOstecenje] on [dbo].[MOBILNI_TELEFONI]
+
+ENABLE TRIGGER [AutogenerateOstecenje] on [dbo].[MOBILNI_TELEFONI]
