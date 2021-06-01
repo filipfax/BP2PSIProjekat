@@ -38,8 +38,13 @@
                                 <Button x:Name="DeleteRadnikBtn"  IsEnabled="False" Click="DeleteRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Delete Selected</Button>
                                 <Button x:Name="SPOJoinBtn"  IsEnabled="False" Click="SPOJoinBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Join by MBR</Button>
                                 <Button x:Name="LockRadnikBtn"   Click="LockRadnikBtn_Click" Height="30" Width="140" Margin="0 5 5 5" >Lock/Unlock Adding</Button>
+                                
                             </StackPanel>
-
+                            <StackPanel Orientation="Horizontal" Margin="10 -5 0 10">
+                                <RadioButton x:Name="ServiseriBtn" GroupName="RadGroup" Checked="ServiseriBtn_Checked" Margin="0 0 10 0">Samo Serviseri</RadioButton>
+                                <RadioButton x:Name="SluzbeniciBtn" GroupName="RadGroup"  Checked="SluzbeniciBtn_Checked"  Margin="0 0 10 0" >Samo Sluzbenici</RadioButton>
+                                <RadioButton x:Name="SviRadBtn" GroupName="RadGroup" Checked="SviRadBtn_Checked" >Svi Radnici</RadioButton>
+                            </StackPanel>
                             <DataGrid HorizontalAlignment="Left" x:Name="RadnikDG" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" VerticalScrollBarVisibility="Auto" SelectionChanged="RadnikDG_SelectionChanged" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" AutoGenerateColumns="False" ColumnWidth="*" Height="300" Margin="10 0 0 10" VerticalAlignment="Top" Width="735">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding MBR}" Header="MBR"/>
@@ -263,8 +268,6 @@
 
             </TabItem>
             
-            <TabItem Header="Skripte" />
-            <TabItem Header="Log" />
         </TabControl>
 
     </Grid>

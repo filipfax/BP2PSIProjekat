@@ -68,6 +68,8 @@ namespace UserInterface.EntityCreateUpdaters
 
                 };
 
+                if (IDTB.Text != "")
+                    s.OST_ID = int.Parse(IDTB.Text);
                 if (MobCB.SelectedItem != null)
                     s.MOBILNI_TELEFONMOB_ID = int.Parse((string)MobCB.SelectedItem.ToString());
                 if (TipCB.SelectedItem != null)

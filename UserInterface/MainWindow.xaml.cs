@@ -485,6 +485,93 @@ namespace UserInterface
                 this.SPOJoinBtn.IsEnabled = false;
             }
         }
+
+        public List<RADNIK> GetRadnici()
+        {
+            using (ProjekatModelDBContext dBContext = new ProjekatModelDBContext())
+            {
+                try
+                {
+
+                    var query = from b in dBContext.RADNICI
+                                orderby b.MBR
+                                select b;
+
+                    return  query.ToList<RADNIK>();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return null;
+                }
+            }
+        }
+
+        private void ServiseriBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            List<int> serviserIds = GetServiseriIDs();
+            List<RADNIK>  radnici= GetRadnici();
+            Dictionary<int, RADNIK> ret = new Dictionary<int, RADNIK>();
+            Dictionary<int, RADNIK> iter = new Dictionary<int, RADNIK>();
+            foreach (RADNIK r in radnici) {
+                ret.Add(r.MBR, r);
+                iter.Add(r.MBR, r);
+            }
+          
+            if (iter != null)
+            {
+                foreach (KeyValuePair<int, RADNIK> r in iter)
+                {
+                    if (!serviserIds.Contains(r.Key))
+                        ret.Remove(r.Key);
+                }
+
+                RadnikDG.ItemsSource = ret.Values.ToList();
+                this.DeleteRadnikBtn.IsEnabled = false;
+                this.UpdateRadnikBtn.IsEnabled = false;
+                this.SPOJoinBtn.IsEnabled = false;
+                this.RadnikDG.SelectedItem = null;
+
+                this.SluzbeniciBtn.IsChecked = false;
+            }
+        }
+
+        private void SluzbeniciBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            List<int> sluzbeniciIds = GetSluzbeniciIDs();
+            List<RADNIK> radnici = GetRadnici();
+            Dictionary<int, RADNIK> ret = new Dictionary<int, RADNIK>();
+            Dictionary<int, RADNIK> iter = new Dictionary<int, RADNIK>();
+            foreach (RADNIK r in radnici)
+            {
+                ret.Add(r.MBR, r);
+                iter.Add(r.MBR, r);
+            }
+
+            if (iter != null)
+            {
+                foreach (KeyValuePair<int, RADNIK> r in iter)
+                {
+                    if (!sluzbeniciIds.Contains(r.Key))
+                        ret.Remove(r.Key);
+                }
+
+                RadnikDG.ItemsSource = ret.Values.ToList();
+                this.DeleteRadnikBtn.IsEnabled = false;
+                this.UpdateRadnikBtn.IsEnabled = false;
+                this.SPOJoinBtn.IsEnabled = false;
+                this.RadnikDG.SelectedItem = null;
+
+                this.ServiseriBtn.IsChecked = false;
+            }
+        }
+
+        private void SviRadBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            LoadAllRadnik();
+        }
+
+
         #endregion Radnik
 
         #region ServisniAlat
@@ -2101,6 +2188,9 @@ namespace UserInterface
 
             }
         }
+
         #endregion Procedure,Funkcije,Trigeri
+
+       
     }
 }

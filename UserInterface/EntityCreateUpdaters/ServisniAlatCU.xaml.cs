@@ -28,7 +28,7 @@ namespace UserInterface.EntityCreateUpdaters
             this.mw = mw;
 
             this.ServisCB.ItemsSource = mw.GetServisIDs();
-            this.RadCB.ItemsSource = mw.GetRadnikIDs();
+            this.RadCB.ItemsSource = mw.GetServiseriIDs();
             this.TipCB.ItemsSource = new List<String> { "Softverski", "Fizicki" };
 
             if (servisnialat != null)
