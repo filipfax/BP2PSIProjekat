@@ -1,4 +1,5 @@
 ﻿using BP2Projekat;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -39,7 +40,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             this.PREZTB.Text = s.PRZ;
 
-            this.ServisCB.SelectedItem = s.SERVISSERV_ID.ToString();
+            this.ServisCB.SelectedItem = s.SERVISSERV_ID;
 
             this.NadCB.SelectedItem = s.NADREDJEN;
 
@@ -49,6 +50,21 @@ namespace UserInterface.EntityCreateUpdaters
             List<int> str = (List<int>)this.NadCB.ItemsSource;
             str.Remove(s.MBR);
             this.NadCB.ItemsSource = str;
+
+            try
+            {
+                if (mw.GetServiseriIDs().Contains(s.MBR))
+                {
+                    this.TipCB.SelectedItem = "Serviser";
+                }
+                else
+                {
+                    this.TipCB.SelectedItem = "Sluzbenik";
+                }
+            }catch(Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
         }
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)

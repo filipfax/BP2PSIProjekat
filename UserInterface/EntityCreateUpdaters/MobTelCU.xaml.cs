@@ -43,7 +43,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             this.ModelTB.Text = mt.MODEL;
 
-            this.MusCB.SelectedItem = mt.MUSTERIJAMUS_ID.ToString();
+            this.MusCB.SelectedItem = mt.MUSTERIJAMUS_ID;
 
 
             this.OpSisCB.SelectedItem = mt.OP_SIS;

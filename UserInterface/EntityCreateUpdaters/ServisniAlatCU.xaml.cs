@@ -53,7 +53,7 @@ namespace UserInterface.EntityCreateUpdaters
 
             this.KolTB.Text = s.KLC.ToString();
 
-            this.RadCB.SelectedItem = s.SERVISERMBR.ToString();
+            this.RadCB.SelectedItem = s.SERVISERMBR;
 
             
 
